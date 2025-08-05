@@ -280,7 +280,6 @@
     <p class="mt-4 text-lg font-medium">Calibrating the experience...</p>
 </div>
 
-<!-- Updated Custom Cursor Elements -->
 <div id="cursor-dot"></div>
 <div id="cursor-circle"></div>
 
@@ -318,9 +317,8 @@
         </div>
     </section>
 
-    <!-- Content sections now use the container class to stay centered -->
     <section id="about" class="py-24 md:py-32 content-section z-10">
-      <div class="container mx-auto px-4 md:px-8">
+      <div class="container mx-auto px-4 md:px-8 max-w-7xl">
         <div class="section-heading-container mb-16">
             <div class="heading-decorator"></div>
             <h2 class="section-header text-4xl md:text-5xl font-bold text-slate-800">Who I Am</h2>
@@ -342,7 +340,7 @@
     </section>
 
     <section id="education" class="py-24 md:py-32 content-section z-10">
-      <div class="container mx-auto px-4 md:px-8">
+      <div class="container mx-auto px-4 md:px-8 max-w-7xl">
         <div class="section-heading-container mb-16">
             <div class="heading-decorator"></div>
             <h2 class="section-header text-4xl md:text-5xl font-bold text-slate-800">Education</h2>
@@ -356,7 +354,7 @@
     </section>
 
     <section id="experience" class="py-24 md:py-32 content-section z-10">
-      <div class="container mx-auto px-4 md:px-8">
+      <div class="container mx-auto px-4 md:px-8 max-w-7xl">
         <div class="section-heading-container mb-16">
             <div class="heading-decorator"></div>
             <h2 class="section-header text-4xl md:text-5xl font-bold text-slate-800">Work Experience</h2>
@@ -389,7 +387,7 @@
     </section>
 
     <section id="skills" class="py-24 md:py-32 content-section z-10">
-        <div class="container mx-auto px-4 md:px-8">
+        <div class="container mx-auto px-4 md:px-8 max-w-7xl">
             <div class="section-heading-container mb-16">
                 <div class="heading-decorator"></div>
                 <h2 class="section-header text-4xl md:text-5xl font-bold text-slate-800">Skills & Technologies</h2>
@@ -542,7 +540,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initCustomCursor();
         initScrollAnimations();
         initTextAnimations();
-        initProjectNavigation(); // Restored this function call
+        initProjectNavigation();
     }
 
     function initTheme() {
@@ -628,14 +626,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Restored Project Navigation Logic ---
     function initProjectNavigation() {
         const projectsGrid = document.querySelector('.projects-grid');
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
         if (!projectsGrid || !prevBtn || !nextBtn) return;
-        const cardWidth = 360 + 40; // card width + gap
-        const scrollAmount = cardWidth * 2; // Scroll 2 cards at a time
+        const cardWidth = 360 + 40;
+        const scrollAmount = cardWidth * 2;
         nextBtn.addEventListener('click', () => {
             projectsGrid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         });
@@ -650,7 +647,7 @@ document.addEventListener('DOMContentLoaded', function() {
             nextBtn.style.pointerEvents = scrollLeft >= scrollWidth - clientWidth - 1 ? 'none' : 'auto';
         }
         projectsGrid.addEventListener('scroll', updateButtonStates);
-        updateButtonStates(); // Initial state
+        updateButtonStates();
     }
 
     function initTextAnimations() {
