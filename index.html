@@ -95,42 +95,43 @@
         .skill-card span { margin-top: 0.75rem; font-weight: 500; font-size: 0.875rem; text-align: center; }
 
 
-        /* --- IMPROVED PROJECTS SECTION --- */
-        #projects-wrapper {
-             padding: 10vh 0;
-             display: flex;
-             flex-direction: column;
-             align-items: center;
-         }
-
+        /* --- PROJECTS SECTION (Restored to original functionality) --- */
+        #projects-wrapper { padding: 10vh 0; }
         #projects-header {
-            max-width: 600px;
-            margin: 0 auto 4rem auto;
+            max-width: 450px;
+            margin: 0 auto 5rem auto;
             text-align: center;
             padding: 0 1rem;
         }
 
         #projects-container {
-            width: 100%;
-            max-width: 1400px; /* Max width for large screens */
-            padding: 2rem 0;
+            height: auto;
+            padding: 4rem 0;
             position: relative;
         }
-        
+
         .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            display: flex;
             gap: 2.5rem;
-            padding: 0 2rem; /* Add some padding on the sides */
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 0 80px;
+            width: 100%;
         }
-        
+
+        .projects-grid::-webkit-scrollbar {
+            display: none;
+        }
+
         .project-card {
+            flex: 0 0 360px;
             overflow: hidden;
             border-radius: 1rem;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            width: 100%; /* Ensure card takes full grid cell width */
         }
-
 
         .project-card:hover {
             transform: translateY(-10px) scale(1.03);
@@ -157,11 +158,35 @@
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
-        
-        /* Styles for navigation buttons remain the same as they were well-implemented */
+
+        /* --- Project Navigation Buttons --- */
         .project-nav-btn {
-            display: none; /* Hide buttons as grid layout doesn't require them */
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
         }
+
+        .project-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .project-nav-btn.prev { left: 20px; }
+        .project-nav-btn.next { right: 20px; }
 
 
         /* --- DARK MODE (DEFAULT GRAYSCALE) --- */
@@ -202,6 +227,8 @@
         html.dark ::-webkit-scrollbar-track { background: #2d3748; }
         html.dark ::-webkit-scrollbar-thumb { background: linear-gradient(45deg, #718096, #e2e8f0); border-radius: 10px; }
         html.dark #projects-wrapper { background-color: rgba(26, 32, 44, 0.7); }
+        html.dark .project-nav-btn { background: rgba(45, 55, 72, 0.8); border-color: rgba(160, 174, 192, 0.3); color: #e2e8f0; }
+        html.dark .project-nav-btn:hover { background: rgba(45, 55, 72, 0.95); }
 
         /* --- LIGHT MODE --- */
         html:not(.dark) body { background-color: #f0f4f8; color: #1e293b; }
@@ -222,7 +249,7 @@
         html:not(.dark) .text-slate-500 { color: #64748b; }
         html:not(.dark) .text-indigo-400 { color: #6366f1; }
         html:not(.dark) #hero h1 span { text-shadow: 1px 1px 10px rgba(0,0,0,0.1); }
-        html.not(.dark) .content-section { background: rgba(255, 255, 255, 0.7); }
+        html:not(.dark) .content-section { background: rgba(255, 255, 255, 0.7); }
         html:not(.dark) .heading-decorator { background: linear-gradient(145deg, #60a5fa, #818cf8); box-shadow: 0 0 15px rgba(99, 102, 241, 0.2); }
         html:not(.dark) .timeline-path { background: #e2e8f0; }
         html:not(.dark) .timeline-path-progress { background: linear-gradient(to bottom, #60a5fa, #818cf8); }
@@ -239,6 +266,9 @@
         html:not(.dark) ::-webkit-scrollbar-track { background: #e0e7ff; }
         html:not(.dark) ::-webkit-scrollbar-thumb { background: linear-gradient(45deg, #60a5fa, #818cf8); }
         html:not(.dark) #projects-wrapper { background-color: #f8fafc; }
+        html:not(.dark) .project-nav-btn { background: rgba(8, 12, 15, 0.8); border-color: rgba(99, 102, 241, 0.3); color: #4f46e5; }
+        html:not(.dark) .project-nav-btn:hover { background: rgba(33, 45, 58, 0.95); }
+
     </style>
 </head>
 <body class="antialiased">
@@ -288,7 +318,7 @@
         </div>
     </section>
 
-    <!-- Content sections remain the same -->
+    <!-- Content sections now use the container class to stay centered -->
     <section id="about" class="py-24 md:py-32 content-section z-10">
       <div class="container mx-auto px-4 md:px-8">
         <div class="section-heading-container mb-16">
@@ -298,23 +328,19 @@
         <div class="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
           <div class="z-10">
             <div class="text-lg text-slate-600 space-y-4">
-  <p>I'm Hamiz Khan, a Computer Engineering student with a strong foundation in Python, data analytics, machine learning, and AI. With a CGPA of 9.48, I blend academic excellence with practical, project-based learning.</p>
-
-  <p>I enjoy turning raw data into meaningful insights using tools like Power BI, SQL, and scikit-learn. I've worked on real-world dashboards, predictive models, and AI-powered applications.</p>
-
-  <p>I've also collaborated with U.S.-based teams on client-facing projects involving automation and reporting, and I actively lead tech initiatives as Vice President of COSA and Technical Head of the Coding Club.</p>
-
-  <p>Passionate about solving real problems through data and AI, I’m always eager to learn, build, and make an impact.</p>
-</div>
-
+              <p>I'm Hamiz Khan, a Computer Engineering student with a strong foundation in Python, data analytics, machine learning, and AI. With a CGPA of 9.48, I blend academic excellence with practical, project-based learning.</p>
+              <p>I enjoy turning raw data into meaningful insights using tools like Power BI, SQL, and scikit-learn. I've worked on real-world dashboards, predictive models, and AI-powered applications.</p>
+              <p>I've also collaborated with U.S.-based teams on client-facing projects involving automation and reporting, and I actively lead tech initiatives as Vice President of COSA and Technical Head of the Coding Club.</p>
+              <p>Passionate about solving real problems through data and AI, I’m always eager to learn, build, and make an impact.</p>
+            </div>
           </div>
           <div class="relative h-[320px] md:h-[340px] flex items-center justify-center">
-  <img src="IMG_4843.JPG" alt="Hamiz Khan" class="relative w-full max-w-md h-full object-cover object-center scale-110 rounded-2xl shadow-lg z-10">
-</div>
-
+            <img src="IMG_4843.JPG" alt="Hamiz Khan" class="relative w-full max-w-md h-full object-cover object-center scale-110 rounded-2xl shadow-lg z-10">
+          </div>
         </div>
       </div>
     </section>
+
     <section id="education" class="py-24 md:py-32 content-section z-10">
       <div class="container mx-auto px-4 md:px-8">
         <div class="section-heading-container mb-16">
@@ -328,6 +354,7 @@
         </div>
       </div>
     </section>
+
     <section id="experience" class="py-24 md:py-32 content-section z-10">
       <div class="container mx-auto px-4 md:px-8">
         <div class="section-heading-container mb-16">
@@ -341,31 +368,26 @@
               <p class="text-sm text-slate-500">Feb 2025 – Present</p>
               <h3 class="text-2xl font-bold text-slate-800">Data Analyst</h3>
               <p class="text-lg font-medium text-indigo-400">Falcon Design Solutions, Nashik</p>
-              <p class="mt-2 text-slate-600">Collaborate with a U.S.based steel detailing firm to automate ETL workflows and streamline data pipelines for
- shop drawing projects. Built Power BI dashboards to visualize project progress and resource utilization. Wrote
- SQL queries to manage drawing metadata and submittals. Supported cross functional teams with actionable
- insights.</p>
+              <p class="mt-2 text-slate-600">Collaborate with a U.S.based steel detailing firm to automate ETL workflows and streamline data pipelines for shop drawing projects. Built Power BI dashboards to visualize project progress and resource utilization. Wrote SQL queries to manage drawing metadata and submittals. Supported cross functional teams with actionable insights.</p>
           </div>
           <div class="timeline-item pl-12 mb-16 relative">
               <div class="timeline-dot absolute left-0 top-5"></div>
               <p class="text-sm text-slate-500">July 2025 – Aug 2025 (Remote)</p>
               <h3 class="text-2xl font-bold text-slate-800">AI Intern</h3>
               <p class="text-lg font-medium text-indigo-400">Mirai School of Technology</p>
-              <p class="mt-2 text-slate-600"> Explored GenAI tools and platforms such as OpenAI, Hugging Face, and n8n. Gained hands-on exposure to AI
- models, chatbot workflows, and document based use cases like summarization and retrieval.</p>
+              <p class="mt-2 text-slate-600"> Explored GenAI tools and platforms such as OpenAI, Hugging Face, and n8n. Gained hands-on exposure to AI models, chatbot workflows, and document based use cases like summarization and retrieval.</p>
           </div>
           <div class="timeline-item pl-12 relative">
               <div class="timeline-dot absolute left-0 top-5"></div>
               <p class="text-sm text-slate-500">Dec 2024 – Feb 2025</p>
               <h3 class="text-2xl font-bold text-slate-800">Data Science Intern</h3>
               <p class="text-lg font-medium text-indigo-400">NetLeap IT Training, Nashik</p>
-              <p class="mt-2 text-slate-600"> Built a fitness and nutrition recommendation web app using Python-Flask and Random Forest. Designed user
- input forms to suggest workout and diet plans based on body metrics. Used trainer-curated and web-sourced
- dataset</p>
+              <p class="mt-2 text-slate-600"> Built a fitness and nutrition recommendation web app using Python-Flask and Random Forest. Designed user input forms to suggest workout and diet plans based on body metrics. Used trainer-curated and web-sourced dataset</p>
           </div>
         </div>
       </div>
     </section>
+
     <section id="skills" class="py-24 md:py-32 content-section z-10">
         <div class="container mx-auto px-4 md:px-8">
             <div class="section-heading-container mb-16">
@@ -395,7 +417,6 @@
                         <div class="skill-card"><img src="https://www.svgrepo.com/show/373938/numpy.svg" alt="NumPy"><span>NumPy</span></div>
                         <div class="skill-card"><img src="https://img.icons8.com/?size=512&id=TkX1totjFmAD&format=png" alt="NumPy"><span>Matplotlib</span></div>
                         <div class="skill-card"><img src="https://cdn.worldvectorlogo.com/logos/seaborn-1.svg" alt="NumPy"><span>Seaborn</span></div>
-
                     </div>
                 </div>
                 <div class="skill-category">
@@ -408,98 +429,83 @@
                         <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/1200px-New_Power_BI_Logo.svg.png" alt="LLMs"><span>Power Bi</span></div>
                         <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png" alt="Git"><span>PostgreSQL</span></div>
                         <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/826px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png" alt="Git"><span>Excel</span></div>
-
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-  <!-- IMPROVED PROJECT SECTION STRUCTURE -->
+    <!-- RESTORED PROJECT SECTION STRUCTURE -->
     <div id="projects-wrapper" class="relative z-10">
-    <!-- Static header, does not scroll horizontally -->
-    <div id="projects-header">
-        <div class="section-heading-container justify-center mb-4">
-             <div class="heading-decorator"></div>
-             <h2 class="section-header text-4xl md:text-5xl font-bold text-slate-800">Featured Projects</h2>
+        <div id="projects-header">
+            <div class="section-heading-container justify-center mb-4">
+                 <div class="heading-decorator"></div>
+                 <h2 class="section-header text-4xl md:text-5xl font-bold text-slate-800">Featured Projects</h2>
+            </div>
+            <p class="text-slate-500 text-lg">Use the arrow buttons to explore my projects. Each showcases a unique challenge and creative solution.</p>
         </div>
-        <p class="text-slate-500 text-lg">A selection of projects that showcase my skills in turning ideas into reality.</p>
+        <section id="projects">
+            <div id="projects-container" class="relative">
+                <button class="project-nav-btn prev" id="prev-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="project-nav-btn next" id="next-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="projects-grid">
+                    <a href="https://github.com/Hamizkhan08/Nutrifusion-Personalized-Fitness-and-Nutrition-Recommendation-System" class="project-card" target="_blank">
+                        <img src="final.png" alt="Fitness & Nutrition Recommender">
+                        <div class="p-6">
+                            <h3 class="text-slate-800">Fitness & Nutrition Recommender</h3>
+                            <p>Web app generating personalized diet and workout plans via Random Forest.</p>
+                        </div>
+                    </a>
+                    <a href="https://github.com/Hamizkhan08/Mindmap" class="project-card" target="_blank">
+                        <img src="mapp.png" alt="YouTube to 3D Mind Map Generator">
+                        <div class="p-6">
+                            <h3 class="text-slate-800">YouTube to 3D Mind Map</h3>
+                            <p>AI-powered tool to visualize video transcripts as interactive 3D mind maps.</p>
+                        </div>
+                    </a>
+                    <a href="https://github.com/Hamizkhan08/Customer-Segmentation-Marketing-Analysis" class="project-card" target="_blank">
+                        <img src="image2.png" alt="ATM Cash Run-Out Predictor">
+                        <div class="p-6">
+                            <h3 class="text-slate-800">Customer Segmentation Marketing Analysis </h3>
+                            <p>Performs customer segmentation using unsupervised machine learning</p>
+                        </div>
+                    </a>
+                    <a href="https://github.com/Hamizkhan08/FacePluse-Missing-Person-Matcher-for-Disaster-Response" class="project-card" target="_blank">
+                        <img src="miss.png" alt="Missing Person Matcher">
+                        <div class="p-6">
+                            <h3 class="text-slate-800">Missing Person Matcher</h3>
+                            <p>Facial recognition tool for identifying missing persons in disaster response.</p>
+                        </div>
+                    </a>
+                    <a href="https://github.com/Hamizkhan08/Job-Resume-Classifier" class="project-card" target="_blank">
+                        <img src="job.png" alt="Job Resume Classifier">
+                        <div class="p-6">
+                            <h3 class="text-slate-800">Job Resume Classifier</h3>
+                            <p>ML app to classify resumes into job roles using NLP.</p>
+                        </div>
+                    </a>
+                    <a href="https://github.com/Hamizkhan08/atm-prediction" class="project-card" target="_blank">
+                        <img src="Screenshot 2025-06-20 121225.png" alt="ATM Cash Run-Out Predictor">
+                        <div class="p-6">
+                            <h3 class="text-slate-800">ATM Cash Predictor</h3>
+                            <p>Predicts cash shortages using historical data for proactive bank alerts.</p>
+                        </div>
+                    </a>
+                    <a href="https://github.com/Hamizkhan08" class="project-card" target="_blank">
+                        <img src="image.png" alt="More Projects">
+                        <div class="p-6">
+                            <h3 class="text-slate-800">And Many More...</h3>
+                            <p>Explore my GitHub to see the full range of my work and contributions.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
     </div>
-
-    <!-- Container with navigation arrows -->
-    <section id="projects">
-        <div id="projects-container" class="relative">
-            <!-- Navigation Arrows (Hidden via CSS, but kept in HTML for potential future use) -->
-            <button class="project-nav-btn prev" id="prev-btn">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="project-nav-btn next" id="next-btn">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-
-           <div class="projects-grid">
-    <a href="https://github.com/Hamizkhan08/Nutrifusion-Personalized-Fitness-and-Nutrition-Recommendation-System" class="project-card" target="_blank">
-        <img src="final.png" alt="Fitness & Nutrition Recommender">
-        <div class="p-6">
-            <h3 class="text-slate-800">Fitness & Nutrition Recommender</h3>
-            <p>Web app generating personalized diet and workout plans via Random Forest.</p>
-        </div>
-    </a>
-
-
-
-    <a href="https://github.com/Hamizkhan08/Mindmap" class="project-card" target="_blank">
-        <img src="mapp.png" alt="YouTube to 3D Mind Map Generator">
-        <div class="p-6">
-            <h3 class="text-slate-800">YouTube to 3D Mind Map</h3>
-            <p>AI-powered tool to visualize video transcripts as interactive 3D mind maps.</p>
-        </div>
-    </a>
-
-    <a href="https://github.com/Hamizkhan08/Customer-Segmentation-Marketing-Analysis" class="project-card" target="_blank">
-        <img src="image2.png" alt="ATM Cash Run-Out Predictor">
-        <div class="p-6">
-            <h3 class="text-slate-800">Customer Segmentation Marketing Analysis </h3>
-            <p>Performs customer segmentation using unsupervised machine learning</p>
-        </div>
-    </a>
-
-    <a href="https://github.com/Hamizkhan08/FacePluse-Missing-Person-Matcher-for-Disaster-Response" class="project-card" target="_blank">
-        <img src="miss.png" alt="Missing Person Matcher">
-        <div class="p-6">
-            <h3 class="text-slate-800">Missing Person Matcher</h3>
-            <p>Facial recognition tool for identifying missing persons in disaster response.</p>
-        </div>
-    </a>
-
-    <a href="https://github.com/Hamizkhan08/Job-Resume-Classifier" class="project-card" target="_blank">
-        <img src="job.png" alt="Job Resume Classifier">
-        <div class="p-6">
-            <h3 class="text-slate-800">Job Resume Classifier</h3>
-            <p>ML app to classify resumes into job roles using NLP.</p>
-        </div>
-    </a>
-
-    <a href="https://github.com/Hamizkhan08/atm-prediction" class="project-card" target="_blank">
-        <img src="Screenshot 2025-06-20 121225.png" alt="ATM Cash Run-Out Predictor">
-        <div class="p-6">
-            <h3 class="text-slate-800">ATM Cash Predictor</h3>
-            <p>Predicts cash shortages using historical data for proactive bank alerts.</p>
-        </div>
-    </a>
-
-    <a href="https://github.com/Hamizkhan08" class="project-card" target="_blank">
-        <img src="image.png" alt="More Projects">
-        <div class="p-6">
-            <h3 class="text-slate-800">And Many More...</h3>
-            <p>Explore my GitHub to see the full range of my work and contributions.</p>
-        </div>
-    </a>
-</div>
-
-        </div>
-    </section>
-</div>
 </main>
 
 <footer class="py-24 z-10 relative">
@@ -519,7 +525,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     gsap.registerPlugin(ScrollTrigger);
 
-    // --- Preloader ---
     window.addEventListener('load', () => {
         gsap.to('#preloader', { opacity: 0, duration: 0.8, onComplete: () => {
             document.getElementById('preloader').style.display = 'none';
@@ -537,9 +542,9 @@ document.addEventListener('DOMContentLoaded', function() {
         initCustomCursor();
         initScrollAnimations();
         initTextAnimations();
+        initProjectNavigation(); // Restored this function call
     }
 
-    // --- Theme Management ---
     function initTheme() {
         const themeToggleBtn = document.getElementById('theme-toggle-btn');
         themeToggleBtn.addEventListener('click', () => {
@@ -547,51 +552,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Navbar Scroll Effect ---
     function initNavbar() {
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => navbar.classList.toggle('navbar-scrolled', window.scrollY > 50));
     }
 
-    // --- 3D Hero Object ---
     function initHero3D() {
         const container = document.getElementById('hero-3d-container');
         if (!container) return;
-
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
         camera.position.z = 3.5;
-
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-3d-canvas'), alpha: true, antialias: true });
         renderer.setSize(container.clientWidth, container.clientHeight);
-
         const geometry = new THREE.TorusKnotGeometry(1, 0.3, 128, 16);
-        const material = new THREE.MeshStandardMaterial({
-            color: 0xa78bfa,
-            metalness: 0.6,
-            roughness: 0.4
-        });
+        const material = new THREE.MeshStandardMaterial({ color: 0xa78bfa, metalness: 0.6, roughness: 0.4 });
         const model = new THREE.Mesh(geometry, material);
         scene.add(model);
-
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
         scene.add(ambientLight);
         const pointLight = new THREE.PointLight(0xffffff, 1);
         pointLight.position.set(5, 5, 5);
         scene.add(pointLight);
-
         let mouse = new THREE.Vector2();
         document.addEventListener('mousemove', e => {
             mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
             mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
         });
-
         window.addEventListener('resize', () => {
             camera.aspect = container.clientWidth / container.clientHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(container.clientWidth, container.clientHeight);
         });
-
         function animate() {
             requestAnimationFrame(animate);
             gsap.to(model.rotation, { y: mouse.x * 0.8, x: -mouse.y * 0.8, duration: 2, ease: 'power2.out' });
@@ -600,33 +592,23 @@ document.addEventListener('DOMContentLoaded', function() {
         animate();
     }
 
-    // --- ENHANCED Custom Cursor ---
     function initCustomCursor() {
         const cursorDot = document.getElementById('cursor-dot');
         const cursorCircle = document.getElementById('cursor-circle');
-
         let dotX = 0, dotY = 0;
-        let circleX = 0, circleY = 0;
-
         window.addEventListener('mousemove', e => {
             dotX = e.clientX;
             dotY = e.clientY;
-
-            // GSAP provides smoother, more reliable animations
             gsap.to(cursorDot, { x: dotX, y: dotY, duration: 0.3, ease: "power2.out" });
-            gsap.to(cursorCircle, { x: dotX - 20, y: dotY - 20, duration: 0.7, ease: "power2.out" }); // Offset for centering
+            gsap.to(cursorCircle, { x: dotX - 20, y: dotY - 20, duration: 0.7, ease: "power2.out" });
         });
-
-        // Add/remove hover class for interactive elements
         document.querySelectorAll('a, button, .project-card, .timeline-item, .skill-card').forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
         });
     }
 
-    // --- GENERAL SCROLL-TRIGGERED ANIMATIONS ---
     function initScrollAnimations() {
-        // Vertical Timeline Animation
         gsap.utils.toArray('.timeline-item').forEach(item => {
             gsap.from(item, {
                 opacity: 0, y: 50, duration: 0.6,
@@ -637,8 +619,6 @@ document.addEventListener('DOMContentLoaded', function() {
             height: "100%",
             scrollTrigger: { trigger: '.timeline-path', start: "top center", end: "bottom center", scrub: 1 }
         });
-
-        // Skill Cards Fade-in Animation
         gsap.utils.toArray('.skill-category').forEach(category => {
             gsap.to(category.querySelectorAll('.skill-card'), {
                 opacity: 1, y: 0, scale: 1,
@@ -646,38 +626,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 scrollTrigger: { trigger: category, start: 'top 80%', }
             });
         });
-
-        // Project Cards entrance animation
-        gsap.utils.toArray('.project-card').forEach((card, i) => {
-            gsap.from(card, {
-                opacity: 0,
-                y: 50,
-                scale: 0.95,
-                duration: 0.6,
-                stagger: 0.1,
-                scrollTrigger: {
-                    trigger: '.projects-grid',
-                    start: 'top 80%',
-                }
-            });
-        });
     }
 
+    // --- Restored Project Navigation Logic ---
+    function initProjectNavigation() {
+        const projectsGrid = document.querySelector('.projects-grid');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        if (!projectsGrid || !prevBtn || !nextBtn) return;
+        const cardWidth = 360 + 40; // card width + gap
+        const scrollAmount = cardWidth * 2; // Scroll 2 cards at a time
+        nextBtn.addEventListener('click', () => {
+            projectsGrid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+        prevBtn.addEventListener('click', () => {
+            projectsGrid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+        function updateButtonStates() {
+            const { scrollLeft, scrollWidth, clientWidth } = projectsGrid;
+            prevBtn.style.opacity = scrollLeft <= 0 ? '0.5' : '1';
+            prevBtn.style.pointerEvents = scrollLeft <= 0 ? 'none' : 'auto';
+            nextBtn.style.opacity = scrollLeft >= scrollWidth - clientWidth - 1 ? '0.5' : '1';
+            nextBtn.style.pointerEvents = scrollLeft >= scrollWidth - clientWidth - 1 ? 'none' : 'auto';
+        }
+        projectsGrid.addEventListener('scroll', updateButtonStates);
+        updateButtonStates(); // Initial state
+    }
 
-    // --- TEXT ANIMATIONS ---
     function initTextAnimations() {
         gsap.fromTo('.hero-element h1 span', { y: '100%', opacity: 0 }, { y: '0%', opacity: 1, stagger: 0.1, duration: 1.2, ease: 'power3.out', delay: 0.5 });
         gsap.fromTo('.hero-element p', { y: '50%', opacity: 0 }, { y: '0%', opacity: 1, duration: 1, ease: 'power3.out', delay: 1 });
-
         document.querySelectorAll('.section-heading-container').forEach((elem) => {
             const header = elem.querySelector('.section-header');
             const decorator = elem.querySelector('.heading-decorator');
-
             gsap.from(decorator, {
                 scaleY: 0, transformOrigin: 'bottom', duration: 0.8, ease: 'power3.out',
                 scrollTrigger: { trigger: elem, start: 'top 85%', toggleActions: 'play none none none' }
             });
-
             if (header) {
                 const text = header.textContent; header.innerHTML = '';
                 text.split('').forEach(char => {
@@ -687,7 +672,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     span.textContent = char === ' ' ? '\u00A0' : char;
                     header.appendChild(span);
                 });
-
                 gsap.fromTo(header.querySelectorAll('.char'),
                     { y: '100%', opacity: 0 },
                     { y: '0%', opacity: 1, stagger: 0.03, duration: 0.8, ease: 'power3.out',
@@ -696,8 +680,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 );
             }
         });
-
-        // Add a fade-in for the new projects header
         gsap.from("#projects-header", {
             opacity: 0, y: 40, duration: 0.8,
             scrollTrigger: { trigger: "#projects-header", start: "top 85%" }
