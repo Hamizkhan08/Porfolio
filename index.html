@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hamiz Khan | Experiential Portfolio</title>
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -14,278 +13,257 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <style>
-        /* --- GENERAL & CURSOR STYLES --- */
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-            transition: background-color 0.5s ease, color 0.5s ease;
-            cursor: none; /* Hide default cursor */
-        }
+<style>
+    /* --- GENERAL & CURSOR STYLES --- */
+    html { scroll-behavior: smooth; }
+    body {
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
+        transition: background-color 0.5s ease, color 0.5s ease;
+        cursor: none; /* Hide default cursor */
+    }
 
-        ::selection { background-color: #8b5cf6; color: rgb(255, 255, 255); }
+    ::selection { background-color: #8b5cf6; color: white; }
 
-        /* --- ENHANCED CURSOR DESIGN --- */
-        #cursor-dot, #cursor-circle {
-            position: fixed;
-            top: 0; left: 0;
-            pointer-events: none;
-            z-index: 9999;
-            border-radius: 50%;
-            transition: transform 0.2s ease-out, opacity 0.2s, background-color 0.2s, width 0.3s, height 0.3s;
-            mix-blend-mode: difference; /* Cool effect on different backgrounds */
-        }
-        #cursor-dot { width: 8px; height: 8px; }
-        #cursor-circle {
-            width: 40px;
-            height: 40px;
-            border: 1px solid; /* Use border for the circle */
-            background-color: transparent;
-        }
+    /* --- CUSTOM CURSOR --- */
+    #cursor-dot, #cursor-circle {
+        position: fixed;
+        top: 0; left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        border-radius: 50%;
+        transition: transform 0.2s ease-out, opacity 0.2s, background-color 0.2s, width 0.3s, height 0.3s;
+        mix-blend-mode: difference;
+    }
+    #cursor-dot { width: 8px; height: 8px; }
+    #cursor-circle {
+        width: 40px;
+        height: 40px;
+        border: 1px solid;
+        background-color: transparent;
+    }
+    body.cursor-hover #cursor-dot { transform: scale(0.5); }
+    body.cursor-hover #cursor-circle { transform: scale(1.5); opacity: 0.8; }
 
-        /* Cursor hover effect */
-        body.cursor-hover #cursor-dot { transform: scale(0.5); }
-        body.cursor-hover #cursor-circle { transform: scale(1.5) rotate(90deg); opacity: 0.8; }
+    /* --- DYNAMIC GRADIENT BACKGROUND --- */
+    #dynamic-gradient-background {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
+        transition: background 0.8s ease;
+        background-size: 200% 200%;
+        animation: gradient-animation 30s ease infinite;
+    }
 
-        /* --- DYNAMIC GRADIENT BACKGROUND --- */
-        #dynamic-gradient-background {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
-            transition: opacity 0.8s ease;
-            background-size: 200% 200%;
-            animation: gradient-animation 40s ease infinite;
-        }
+    @keyframes gradient-animation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
 
-        @keyframes gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    /* --- 3D HERO OBJECT --- */
+    #hero-3d-container {
+        width: 100%;
+        height: 500px;
+        min-height: 400px; /* Ensure it has a minimum height */
+    }
+    #hero-3d-canvas { width: 100% !important; height: 100% !important; cursor: pointer; }
+    @media (max-width: 768px) {
+        #hero-3d-container { display: none; }
+    }
 
-        #hero-3d-container { position: relative; width: 100%; height: 500px; z-index: 5; }
-        #hero-3d-canvas { width: 100% !important; height: 100% !important; cursor: pointer; }
-        @media (max-width: 768px) { #hero-3d-container { display: none; } }
+    /* --- NAVBAR --- */
+    #navbar { transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; }
 
-        #navbar { transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; }
+    /* --- SCROLLBAR --- */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
 
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
+    /* --- SECTION HEADING --- */
+    .section-heading-container { display: flex; align-items: center; gap: 1rem; }
+    .heading-decorator {
+        width: 0.75rem; height: 2.5rem; border-radius: 0.25rem;
+        transition: all 0.5s ease;
+    }
+    .section-header { flex-shrink: 0; }
+    .section-header .char { display: inline-block; }
 
-        .section-heading-container { display: flex; align-items: center; gap: 1.5rem; }
-        .heading-decorator {
-            width: 1rem; height: 2.5rem; border-radius: 0.25rem;
-            transition: all 0.5s ease;
-        }
-        .section-header { flex-shrink: 0; }
-        .section-header .char { display: inline-block; }
+    /* --- TIMELINE --- */
+    .timeline-path { position: absolute; top: 0; left: 1rem; height: 100%; width: 3px; z-index: -1; transition: background-color 0.5s ease; }
+    .timeline-path-progress { position: absolute; top: 0; left: 0; height: 0; width: 100%; }
+    .timeline-dot { transform: translate(-50%, -50%); top: 1.75rem; left: 1.1rem;}
 
-        .timeline-path { position: absolute; top: 0; left: 18px; height: 100%; width: 4px; z-index: -1; transition: background-color 0.5s ease; }
-        .timeline-path-progress { position: absolute; top: 0; left: 0; height: 0; width: 100%; }
-        .timeline-dot { transform-origin: center; }
+    /* --- SKILLS --- */
+    .skill-category { padding: 2rem; border-radius: 1rem; }
+    .skill-category h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem; }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 1.5rem; }
+    .skill-card {
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        padding: 1rem;
+        border-radius: 0.75rem; transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        opacity: 0; transform: translateY(20px);
+    }
+    .skill-card:hover { transform: translateY(-8px) scale(1.05); }
+    .skill-card img { height: 40px; width: 40px; object-fit: contain; transition: transform 0.3s ease; }
+    .skill-card span { margin-top: 0.75rem; font-weight: 500; font-size: 0.875rem; text-align: center; }
 
-        .skill-category { padding: 2.5rem; border-radius: 1rem; }
-        .skill-category h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; }
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 1.5rem; }
-        .skill-card {
-            height: 110px; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            border-radius: 0.75rem; transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s ease;
-            opacity: 0; transform: translateY(30px) scale(0.95);
-        }
-        .skill-card:hover { transform: scale(1.1) translateY(-5px); }
-        .skill-card img { height: 40px; width: 40px; transition: transform 0.4s ease; }
-        .skill-card span { margin-top: 0.75rem; font-weight: 500; font-size: 0.875rem; text-align: center; }
+    /* --- PROJECTS --- */
+    #projects-wrapper { padding: 6rem 0; }
+    #projects-header {
+        max-width: 700px;
+        margin: 0 auto 4rem auto;
+        text-align: center;
+        padding: 0 1rem;
+    }
+    #projects-container { position: relative; }
+    .projects-grid {
+        display: flex;
+        gap: 1.5rem; /* Reduced gap for a tighter look */
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+        padding: 1rem clamp(1rem, 5vw, 4rem); /* Responsive padding */
+    }
+    .projects-grid::-webkit-scrollbar { display: none; }
 
+    .project-card {
+        flex: 0 0 clamp(280px, 80vw, 350px); /* Responsive card width */
+        overflow: hidden;
+        border-radius: 1rem;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .project-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+    }
+    .project-card img {
+        width: 100%;
+        height: 12rem; /* Adjusted height */
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+    .project-card:hover img { transform: scale(1.05); }
 
-        /* --- PROJECTS SECTION (Restored to original functionality) --- */
-        #projects-wrapper { padding: 10vh 0; }
-        #projects-header {
-            max-width: 450px;
-            margin: 0 auto 5rem auto;
-            text-align: center;
-            padding: 0 1rem;
-        }
+    /* --- PROJECT NAVIGATION BUTTONS --- */
+    .project-nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 50%;
+        width: 50px; height: 50px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.25rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
+    }
+    .project-nav-btn:hover { transform: translateY(-50%) scale(1.1); }
+    .project-nav-btn.prev { left: clamp(0.5rem, 3vw, 2rem); }
+    .project-nav-btn.next { right: clamp(0.5rem, 3vw, 2rem); }
+    .project-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
-        #projects-container {
-            height: auto;
-            padding: 4rem 0;
-            position: relative;
-        }
+    /* =================================================================== */
+    /* --- DARK MODE --- */
+    /* =================================================================== */
+    html.dark body { color: #d1d5db; } /* gray-300 */
+    html.dark #dynamic-gradient-background { background: linear-gradient(225deg, #10062a, #0c132b, #1a2035, #111827); }
+    html.dark #cursor-dot { background-color: #f3f4f6; } /* gray-100 */
+    html.dark #cursor-circle { border-color: #f3f4f6; } /* gray-100 */
+    html.dark #preloader { background-color: #111827; } /* gray-900 */
+    html.dark #preloader .animate-spin { border-color: #4b5563; border-top-color: transparent; } /* gray-600 */
+    html.dark #preloader p { color: #d1d5db; } /* gray-300 */
+    html.dark #navbar.navbar-scrolled { background-color: rgba(17, 24, 39, 0.8); backdrop-filter: blur(10px); }
+    html.dark #theme-toggle-btn { background: #374151; color: #d1d5db; width: 40px; height: 40px; } /* gray-700, gray-300 */
+    html.dark #theme-toggle-btn .fa-sun { display: none; }
+    html.dark #theme-toggle-btn .fa-moon { display: block; }
+    html.dark .nav-link { color: #d1d5db; position: relative; font-weight: 500; } /* gray-300 */
+    html.dark .nav-link:hover { color: #ffffff; }
+    html.dark .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: #8b5cf6; transition: width 0.3s ease; } /* violet-500 */
+    html.dark .nav-link:hover::after { width: 100%; }
+    html.dark .text-primary { color: #f3f4f6; } /* gray-100 (was slate-800) */
+    html.dark .text-secondary { color: #9ca3af; } /* gray-400 (was slate-600) */
+    html.dark .text-tertiary { color: #6b7280; } /* gray-500 (was slate-500) */
+    html.dark .text-accent { color: #a78bfa; } /* violet-400 */
+    html.dark .content-section { background: rgba(31, 41, 55, 0.4); border: 1px solid #374151; backdrop-filter: blur(8px); border-radius: 1rem; } /* gray-700, gray-700 */
+    html.dark .heading-decorator { background: linear-gradient(145deg, #8b5cf6, #a78bfa); } /* violet-500, violet-400 */
+    html.dark .timeline-path { background: #374151; } /* gray-700 */
+    html.dark .timeline-path-progress { background: linear-gradient(to bottom, #a78bfa, #8b5cf6); }
+    html.dark .timeline-dot { background-color: #1f2937; border: 3px solid #4f46e5; } /* gray-800, indigo-600 */
+    html.dark .skill-category { background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; } /* gray-800, gray-700 */
+    html.dark .skill-card { background: #374151; border: 1px solid #4b5563; } /* gray-700, gray-600 */
+    html.dark .skill-card:hover { box-shadow: 0 0 20px rgba(167, 139, 250, 0.15); border-color: #8b5cf6; background: #4b5563;}
+    html.dark #projects-wrapper { background-color: rgba(17, 24, 39, 0.7); } /* gray-900 */
+    html.dark .project-card { background-color: #1f2937; border: 1px solid #374151; } /* gray-800, gray-700 */
+    html.dark .project-card:hover { border-color: #8b5cf6; } /* violet-500 */
+    html.dark .project-nav-btn { background: #1f2937; border: 1px solid #374151; color: #d1d5db; }
+    html.dark .project-nav-btn:hover { background: #374151; }
+    html.dark #contact-btn { color: #f3f4f6; background-color: transparent; border: 2px solid #8b5cf6; } /* violet-500 */
+    html.dark #contact-btn:hover { background-color: #8b5cf6; color: white; }
+    html.dark footer { background-color: transparent; }
+    html.dark ::-webkit-scrollbar-track { background: #1f2937; } /* gray-800 */
+    html.dark ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 10px; } /* gray-600 */
+    html.dark ::-webkit-scrollbar-thumb:hover { background: #6b7280; } /* gray-500 */
 
-        .projects-grid {
-            display: flex;
-            gap: 2.5rem;
-            overflow-x: auto;
-            overflow-y: hidden;
-            scroll-behavior: smooth;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            padding: 0 80px;
-            width: 100%;
-        }
+    /* =================================================================== */
+    /* --- LIGHT MODE --- */
+    /* =================================================================== */
+    html:not(.dark) body { background-color: #f9fafb; color: #374151; } /* gray-50, gray-700 */
+    html:not(.dark) #dynamic-gradient-background { background: linear-gradient(225deg, #ffffff, #f3e8ff, #e0e7ff, #f9fafb); }
+    html:not(.dark) #cursor-dot { background-color: #4f46e5; } /* indigo-600 */
+    html:not(.dark) #cursor-circle { border-color: #4f46e5; } /* indigo-600 */
+    html:not(.dark) #preloader { background-color: #f9fafb; } /* gray-50 */
+    html:not(.dark) #preloader .animate-spin { border-color: #d1d5db; border-top-color: transparent; } /* gray-300 */
+    html:not(.dark) #preloader p { color: #4b5563; } /* gray-600 */
+    html:not(.dark) #navbar.navbar-scrolled { background-color: rgba(249, 250, 251, 0.8); backdrop-filter: blur(10px); }
+    html:not(.dark) #theme-toggle-btn { background: #eef2ff; color: #4f46e5; } /* indigo-50, indigo-600 */
+    html:not(.dark) #theme-toggle-btn .fa-sun { display: block; }
+    html:not(.dark) #theme-toggle-btn .fa-moon { display: none; }
+    html:not(.dark) .nav-link { color: #4b5563; } /* gray-600 */
+    html:not(.dark) .nav-link:hover { color: #111827; } /* gray-900 */
+    html:not(.dark) .nav-link::after { background-color: #6366f1; } /* indigo-500 */
+    html:not(.dark) .text-primary { color: #111827; } /* gray-900 (was slate-800) */
+    html:not(.dark) .text-secondary { color: #4b5563; } /* gray-600 (was slate-600) */
+    html.not(dark) .text-tertiary { color: #6b7280; } /* gray-500 (was slate-500) */
+    html:not(.dark) .text-accent { color: #6366f1; } /* indigo-500 */
+    html:not(.dark) .content-section { background: rgba(255, 255, 255, 0.7); border: 1px solid #e5e7eb; backdrop-filter: blur(8px); border-radius: 1rem; } /* gray-200 */
+    html:not(.dark) .heading-decorator { background: linear-gradient(145deg, #6366f1, #8b5cf6); } /* indigo-500, violet-500 */
+    html:not(.dark) .timeline-path { background: #e5e7eb; } /* gray-200 */
+    html:not(.dark) .timeline-path-progress { background: linear-gradient(to bottom, #818cf8, #6366f1); }
+    html:not(.dark) .timeline-dot { background-color: #ffffff; border: 3px solid #a5b4fc; } /* indigo-300 */
+    html:not(.dark) .skill-category { background: #ffffff; border: 1px solid #e5e7eb; } /* gray-200 */
+    html:not(.dark) .skill-card { background: #f9fafb; border: 1px solid #e5e7eb; } /* gray-50, gray-200 */
+    html:not(.dark) .skill-card:hover { box-shadow: 0 0 20px rgba(99, 102, 241, 0.15); border-color: #8b5cf6; background-color: #fff; }
+    html:not(.dark) #projects-wrapper { background-color: #f3f4f6; } /* gray-100 */
+    html:not(.dark) .project-card { background: #ffffff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1); border: 1px solid #e5e7eb; }
+    html:not(.dark) .project-card:hover { border-color: #8b5cf6; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); }
+    html:not(.dark) .project-nav-btn { background: #ffffff; border: 1px solid #e5e7eb; color: #4f46e5; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+    html:not(.dark) .project-nav-btn:hover { background: #f3f4f6; }
+    html:not(.dark) #contact-btn { color: #4f46e5; border-color: #6366f1; } /* indigo-600, indigo-500 */
+    html:not(.dark) #contact-btn:hover { background-color: #6366f1; color: white; }
+    html:not(.dark) footer { background-color: #1f2937; color: #e5e7eb;} /* gray-800, gray-200 */
+    html:not(.dark) footer .text-slate-300 { color: #d1d5db; } /* Mapped to gray-300 */
+    html:not(.dark) footer .text-slate-400 { color: #9ca3af; } /* Mapped to gray-400 */
+    html:not(.dark) footer .text-slate-500 { color: #6b7280; } /* Mapped to gray-500 */
+    html:not(.dark) footer .hover\:text-white:hover { color: #ffffff; }
+    html:not(.dark) ::-webkit-scrollbar-track { background: #e5e7eb; } /* gray-200 */
+    html:not(.dark) ::-webkit-scrollbar-thumb { background: #a5b4fc; border-radius: 10px; } /* indigo-300 */
+    html:not(.dark) ::-webkit-scrollbar-thumb:hover { background: #818cf8; } /* indigo-400 */
+</style>
 
-        .projects-grid::-webkit-scrollbar {
-            display: none;
-        }
-
-        .project-card {
-            flex: 0 0 360px;
-            overflow: hidden;
-            border-radius: 1rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px) scale(1.03);
-            filter: brightness(1.1);
-        }
-
-        .project-card img {
-            width: 100%;
-            height: 15rem;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .project-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .project-card .p-6 {
-            padding: 1.5rem;
-        }
-
-        .project-card h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        /* --- Project Navigation Buttons --- */
-        .project-nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .project-nav-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .project-nav-btn.prev { left: 20px; }
-        .project-nav-btn.next { right: 20px; }
-
-
-        /* --- DARK MODE (DEFAULT GRAYSCALE) --- */
-        html.dark body { color: #e5e7eb; }
-        html.dark #dynamic-gradient-background { background: radial-gradient(circle at top left, #444952, #353942, #0f1217); }
-        html.dark #cursor-dot { background-color: #f0f4f8; }
-        html.dark #cursor-circle { border-color: #f0f4f8; }
-        html.dark #preloader { background-color: #1a202c; }
-        html.dark #preloader .animate-spin { border-color: #a0aec0; border-top-color: transparent; }
-        html.dark #preloader p { color: #e2e8f0; }
-        html.dark #navbar.navbar-scrolled { background-color: rgba(26, 32, 44, 0.8); backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-        html.dark #theme-toggle-btn { background: #4a5568; color: #e2e8f0; width: 40px; height: 40px; }
-        html.dark #theme-toggle-btn .fa-sun { display: none; }
-        html.dark #theme-toggle-btn .fa-moon { display: block; }
-        html.dark .nav-link { color: #e2e8f0; position: relative; font-weight: 500; }
-        html.dark .nav-link:hover { color: #fff; }
-        html.dark .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 50%; transform: translateX(-50%); background-color: #a0aec0; transition: width 0.3s ease; }
-        html.dark .nav-link:hover::after { width: 100%; }
-        html.dark .text-slate-800 { color: #f7fafc; } /* WHITE text for headings */
-        html.dark .text-slate-600 { color: #e2e8f0; } /* Lighter gray for subtitles */
-        html.dark .text-slate-500 { color: #a0aec0; } /* Light gray for other text */
-        html.dark .text-indigo-400 { color: #a78bfa; }
-        html.dark #hero h1 span { text-shadow: 1px 1px 20px rgba(255, 255, 255, 0.1); }
-        html.dark .content-section { background: rgba(45, 55, 72, 0.4); backdrop-filter: blur(8px); }
-        html.dark .heading-decorator { background: linear-gradient(145deg, #a0aec0, #f7fafc); box-shadow: 0 0 15px rgba(200, 200, 200, 0.2); }
-        html.dark .timeline-path { background: #4a5568; }
-        html.dark .timeline-path-progress { background: linear-gradient(to bottom, #e2e8f0, #a0aec0); }
-        html.dark .timeline-dot { background-color: #2d3748; border: 4px solid #4a5568; }
-        html.dark .skill-category { background: rgba(26, 32, 44, 0.7); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        html.dark .skill-card {  background: radial-gradient(circle at top left, #3c4047, #373f4d, #0b0d12); border: 1px solid #4a5568; }
-        html.dark .skill-card:hover { box-shadow: 0 0 25px rgba(226, 232, 240, 0.2); background-color: #4a5568; }
-        html.dark .project-card { background-color: #2d3748; box-shadow: 0 10px 20px rgba(0,0,0,0.3); border: 1px solid #4a5568; }
-        html.dark .project-card:hover { box-shadow: 0 15px 30px rgba(226, 232, 240, 0.2); border-color: #718096; }
-        html.dark .project-card p { color: #a0aec0; }
-        html.dark #contact-btn { color: #f7fafc; background-color: transparent; border: 2px solid #a0aec0; }
-        html.dark #contact-btn:hover { background-color: #f7fafc; color: #1a202c; }
-        html.dark footer { background-color: #1a202c; }
-        html.dark ::-webkit-scrollbar-track { background: #2d3748; }
-        html.dark ::-webkit-scrollbar-thumb { background: linear-gradient(45deg, #718096, #e2e8f0); border-radius: 10px; }
-        html.dark #projects-wrapper { background-color: rgba(26, 32, 44, 0.7); }
-        html.dark .project-nav-btn { background: rgba(45, 55, 72, 0.8); border-color: rgba(160, 174, 192, 0.3); color: #e2e8f0; }
-        html.dark .project-nav-btn:hover { background: rgba(45, 55, 72, 0.95); }
-
-        /* --- LIGHT MODE --- */
-        html:not(.dark) body { background-color: #f0f4f8; color: #1e293b; }
-        html:not(.dark) #dynamic-gradient-background { background: radial-gradient(circle at top left, #7c8cdc, #838fb1, #eaeff4); }
-        html:not(.dark) #cursor-dot { background-color: #4f46e5; }
-        html:not(.dark) #cursor-circle { border-color: #4f46e5; }
-        html:not(.dark) #preloader { background-color: #f0f4f8; }
-        html:not(.dark) #preloader p { color: #54657d; }
-        html:not(.dark) #navbar.navbar-scrolled { background-color: rgba(248, 250, 252, 0.8); }
-        html:not(.dark) #theme-toggle-btn { background: #eef2ff; color: #4f46e5; }
-        html:not(.dark) #theme-toggle-btn .fa-sun { display: block; }
-        html:not(.dark) #theme-toggle-btn .fa-moon { display: none; }
-        html:not(.dark) .nav-link { color: #475569; }
-        html:not(.dark) .nav-link:hover { color: #1e293b; }
-        html:not(.dark) .nav-link::after { background-color: #6366f1; }
-        html:not(.dark) .text-slate-800 { color: #1e293b; }
-        html:not(.dark) .text-slate-600 { color: #475569; }
-        html:not(.dark) .text-slate-500 { color: #64748b; }
-        html:not(.dark) .text-indigo-400 { color: #6366f1; }
-        html:not(.dark) #hero h1 span { text-shadow: 1px 1px 10px rgba(0,0,0,0.1); }
-        html:not(.dark) .content-section { background: rgba(255, 255, 255, 0.7); }
-        html:not(.dark) .heading-decorator { background: linear-gradient(145deg, #60a5fa, #818cf8); box-shadow: 0 0 15px rgba(99, 102, 241, 0.2); }
-        html:not(.dark) .timeline-path { background: #e2e8f0; }
-        html:not(.dark) .timeline-path-progress { background: linear-gradient(to bottom, #60a5fa, #818cf8); }
-        html:not(.dark) .timeline-dot { background-color: #f8fafc; border-color: #cbd5e1; }
-        html:not(.dark) .skill-category { background: radial-gradient(circle at top left, #8fa2ff, #616f95, #bacadb); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        html:not(.dark) .skill-card {background: radial-gradient(circle at top left, #eaeff4, #838fb1, #7c8cdc); border: 1px solid #e2e8f0; }
-        html:not(.dark) .skill-card:hover { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); background-color: #fff; }
-        html:not(.dark) .project-card { background: radial-gradient(circle at top left, #7c8cdc, #838fb1, #eaeff4);; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: none; }
-        html:not(.dark) .project-card:hover { box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2); }
-        html:not(.dark) .project-card p { color: #475569; }
-        html:not(.dark) #contact-btn { color: #4f46e5; border-color: #6366f1; }
-        html:not(.dark) #contact-btn:hover { background-color: #6366f1; color: white; }
-        html:not(.dark) footer { background-color: #4c5585; }
-        html:not(.dark) ::-webkit-scrollbar-track { background: #e0e7ff; }
-        html:not(.dark) ::-webkit-scrollbar-thumb { background: linear-gradient(45deg, #60a5fa, #818cf8); }
-        html:not(.dark) #projects-wrapper { background-color: #f8fafc; }
-        html:not(.dark) .project-nav-btn { background: rgba(8, 12, 15, 0.8); border-color: rgba(99, 102, 241, 0.3); color: #4f46e5; }
-        html:not(.dark) .project-nav-btn:hover { background: rgba(33, 45, 58, 0.95); }
-
-    </style>
 </head>
 <body class="antialiased">
 
 <div id="dynamic-gradient-background"></div>
 
 <div id="preloader" class="fixed inset-0 z-[100] flex flex-col justify-center items-center">
-    <div class="w-20 h-20 border-4 border-dashed rounded-full animate-spin"></div>
+    <div class="w-16 h-16 border-4 border-dashed rounded-full animate-spin"></div>
     <p class="mt-4 text-lg font-medium">Calibrating the experience...</p>
 </div>
 
 <div id="cursor-dot"></div>
 <div id="cursor-circle"></div>
 
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 p-4">
-    <div class="container mx-auto flex justify-between items-center">
-        <a href="#" class="text-3xl font-bold text-slate-800 tracking-wide">HK.</a>
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50">
+    <div class="mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4 max-w-7xl">
+        <a href="#" class="text-3xl font-bold text-primary tracking-wide">HK.</a>
         <div class="hidden md:flex items-center space-x-8">
             <a href="#about" class="nav-link">About</a>
             <a href="#education" class="nav-link">Education</a>
@@ -300,222 +278,216 @@
     </div>
 </nav>
 
-<main>
-    <section id="hero" class="relative flex items-center h-screen py-32 md:py-64 z-10 overflow-hidden">
-        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
-            <div class="text-center md:text-left relative z-20">
-                <h1 class="text-6xl md:text-8xl lg:text-9xl font-extrabold text-slate-800 hero-element leading-tight">
-                    <span>Khan Hamiz</span>
-                </h1>
-                <p class="text-lg md:text-xl mt-6 text-slate-600 font-bold max-w-xl mx-auto md:mx-0 hero-element">
-                    Computer Engineering student eager to build impactful, data-driven solutions in a growth-focused environment.
-                </p>
+<main class="relative z-10 px-4 sm:px-6 lg:px-8">
+    <section id="hero" class="relative min-h-screen flex items-center py-24 md:py-32 -mx-4 sm:-mx-6 lg:-mx-8">
+        <div class="container mx-auto px-4 w-full">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="text-center md:text-left">
+                    <h1 class="text-5xl sm:text-6xl lg:text-8xl font-extrabold text-primary leading-tight hero-element">
+                        <span>Khan Hamiz</span>
+                    </h1>
+                    <p class="text-lg md:text-xl mt-6 text-secondary font-medium max-w-xl mx-auto md:mx-0 hero-element">
+                        Computer Engineering student eager to build impactful, data-driven solutions in a growth-focused environment.
+                    </p>
+                </div>
+                <div id="hero-3d-container">
+                    <canvas id="hero-3d-canvas"></canvas>
+                </div>
             </div>
-            <div id="hero-3d-container">
-                <canvas id="hero-3d-canvas"></canvas>
-            </div>
         </div>
     </section>
 
-    <section id="about" class="py-24 md:py-32 content-section z-10">
-      <div class="container mx-auto px-4 md:px-8 max-w-7xl">
-        <div class="section-heading-container mb-16">
-            <div class="heading-decorator"></div>
-            <h2 class="section-header text-4xl md:text-5xl font-bold text-slate-800">Who I Am</h2>
-        </div>
-        <div class="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
-          <div class="z-10">
-            <div class="text-lg text-slate-600 space-y-4">
-              <p>I'm Hamiz Khan, a Computer Engineering student with a strong foundation in Python, data analytics, machine learning, and AI. With a CGPA of 9.48, I blend academic excellence with practical, project-based learning.</p>
-              <p>I enjoy turning raw data into meaningful insights using tools like Power BI, SQL, and scikit-learn. I've worked on real-world dashboards, predictive models, and AI-powered applications.</p>
-              <p>I've also collaborated with U.S.-based teams on client-facing projects involving automation and reporting, and I actively lead tech initiatives as Vice President of COSA and Technical Head of the Coding Club.</p>
-              <p>Passionate about solving real problems through data and AI, I’m always eager to learn, build, and make an impact.</p>
-            </div>
-          </div>
-          <div class="relative h-[320px] md:h-[340px] flex items-center justify-center">
-            <img src="IMG_4843.JPG" alt="Hamiz Khan" class="relative w-full max-w-md h-full object-cover object-center scale-110 rounded-2xl shadow-lg z-10">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="education" class="py-24 md:py-32 content-section z-10">
-      <div class="container mx-auto px-4 md:px-8 max-w-7xl">
-        <div class="section-heading-container mb-16">
-            <div class="heading-decorator"></div>
-            <h2 class="section-header text-4xl md:text-5xl font-bold text-slate-800">Education</h2>
-        </div>
-        <div class="relative max-w-2xl mx-auto">
-          <div class="timeline-path"><div class="timeline-path-progress"></div></div>
-          <div class="timeline-item pl-12 mb-16 relative"><div class="timeline-dot absolute left-0 top-5"></div><p class="text-sm text-slate-500">2022 - 2026</p><h3 class="text-2xl font-bold text-slate-800">Bachelor of Engineering in Computer Engineering</h3><p class="text-lg font-medium text-indigo-400">Guru Gobind Singh College Of Engineering And Research Centre, Nashik</p><p class="mt-2 text-slate-600">Current SGPA: 9.48. Deeply involved in AI/ML,Data Analytics ,Data Science, and full-stack development subjects and projects.</p></div>
-          <div class="timeline-item pl-12 relative"><div class="timeline-dot absolute left-0 top-5"></div><p class="text-sm text-slate-500">2021 - 2022</p><h3 class="text-2xl font-bold text-slate-800">HSC (Class 12)</h3><p class="text-lg font-medium text-indigo-400">Universal College of Commerce and Science</p><p class="mt-2 text-slate-600">Completed higher secondary education with a focus on Physics, Chemistry, and Mathematics, scoring 72.33%.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience" class="py-24 md:py-32 content-section z-10">
-      <div class="container mx-auto px-4 md:px-8 max-w-7xl">
-        <div class="section-heading-container mb-16">
-            <div class="heading-decorator"></div>
-            <h2 class="section-header text-4xl md:text-5xl font-bold text-slate-800">Work Experience</h2>
-        </div>
-        <div class="relative max-w-3xl mx-auto">
-          <div class="timeline-path"><div class="timeline-path-progress"></div></div>
-          <div class="timeline-item pl-12 mb-16 relative">
-              <div class="timeline-dot absolute left-0 top-5"></div>
-              <p class="text-sm text-slate-500">Feb 2025 – Present</p>
-              <h3 class="text-2xl font-bold text-slate-800">Data Analyst</h3>
-              <p class="text-lg font-medium text-indigo-400">Falcon Design Solutions, Nashik</p>
-              <p class="mt-2 text-slate-600">Collaborate with a U.S.based steel detailing firm to automate ETL workflows and streamline data pipelines for shop drawing projects. Built Power BI dashboards to visualize project progress and resource utilization. Wrote SQL queries to manage drawing metadata and submittals. Supported cross functional teams with actionable insights.</p>
-          </div>
-          <div class="timeline-item pl-12 mb-16 relative">
-              <div class="timeline-dot absolute left-0 top-5"></div>
-              <p class="text-sm text-slate-500">July 2025 – Aug 2025 (Remote)</p>
-              <h3 class="text-2xl font-bold text-slate-800">AI Intern</h3>
-              <p class="text-lg font-medium text-indigo-400">Mirai School of Technology</p>
-              <p class="mt-2 text-slate-600"> Explored GenAI tools and platforms such as OpenAI, Hugging Face, and n8n. Gained hands-on exposure to AI models, chatbot workflows, and document based use cases like summarization and retrieval.</p>
-          </div>
-          <div class="timeline-item pl-12 relative">
-              <div class="timeline-dot absolute left-0 top-5"></div>
-              <p class="text-sm text-slate-500">Dec 2024 – Feb 2025</p>
-              <h3 class="text-2xl font-bold text-slate-800">Data Science Intern</h3>
-              <p class="text-lg font-medium text-indigo-400">NetLeap IT Training, Nashik</p>
-              <p class="mt-2 text-slate-600"> Built a fitness and nutrition recommendation web app using Python-Flask and Random Forest. Designed user input forms to suggest workout and diet plans based on body metrics. Used trainer-curated and web-sourced dataset</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills" class="py-24 md:py-32 content-section z-10">
-        <div class="container mx-auto px-4 md:px-8 max-w-7xl">
-            <div class="section-heading-container mb-16">
+    <div class="space-y-20 md:space-y-32">
+        <section id="about" class="py-20 md:py-28 content-section">
+          <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="section-heading-container mb-12">
                 <div class="heading-decorator"></div>
-                <h2 class="section-header text-4xl md:text-5xl font-bold text-slate-800">Skills & Technologies</h2>
+                <h2 class="section-header text-4xl md:text-5xl font-bold text-primary">Who I Am</h2>
             </div>
-            <div class="space-y-12">
-                <div class="skill-category">
-                    <h3>Languages</h3>
-                    <div class="skills-grid">
-                        <div class="skill-card"><img src="https://www.svgrepo.com/show/452091/python.svg" alt="Python"><span>Python</span></div>
-                        <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/C_Programming_Language.svg/1200px-C_Programming_Language.svg.png" alt="C"><span>C</span></div>
-                        <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png" alt="C++"><span>C++</span></div>
-                        <div class="skill-card"><img src="https://www.svgrepo.com/show/374093/sql.svg" alt="SQL"><span>SQL</span></div>
-                        <div class="skill-card"><img src="https://www.svgrepo.com/show/349419/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
-                        <div class="skill-card"><img src="https://www.svgrepo.com/show/452228/html-5.svg" alt="HTML"><span>HTML</span></div>
-                        <div class="skill-card"><img src="https://www.svgrepo.com/show/452185/css-3.svg" alt="CSS"><span>CSS</span></div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Frameworks & Libraries</h3>
-                     <div class="skills-grid">
-                        <div class="skill-card"><img src="https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/logos/flask-qvsfwhwywucb6zv0d7ce.png/flask-1byb2jlw6nwim4nx2248xg.png?_a=DATAg1AAZAA0" alt="Flask"><span>Flask</span></div>
-                        <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg" alt="TensorFlow"><span>TensorFlow</span></div>
-                        <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Scikit_learn_logo_small.svg/2560px-Scikit_learn_logo_small.svg.png" alt="Scikit-learn"><span>Scikit-learn</span></div>
-                        <div class="skill-card"><img src="https://cdn.worldvectorlogo.com/logos/pandas.svg" alt="Pandas"><span>Pandas</span></div>
-                        <div class="skill-card"><img src="https://www.svgrepo.com/show/373938/numpy.svg" alt="NumPy"><span>NumPy</span></div>
-                        <div class="skill-card"><img src="https://img.icons8.com/?size=512&id=TkX1totjFmAD&format=png" alt="NumPy"><span>Matplotlib</span></div>
-                        <div class="skill-card"><img src="https://cdn.worldvectorlogo.com/logos/seaborn-1.svg" alt="NumPy"><span>Seaborn</span></div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Tools & Technologies</h3>
-                    <div class="skills-grid">
-                        <div class="skill-card"><img src="https://www.svgrepo.com/show/452210/git.svg" alt="Git"><span>Git</span></div>
-                        <div class="skill-card"><img src="https://www.svgrepo.com/show/373848/mysql.svg" alt="MySQL"><span>MySQL</span></div>
-                        <div class="skill-card"><img src="https://www.svgrepo.com/show/374171/vscode.svg" alt="VS Code"><span>VS Code</span></div>
-                        <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/1767px-Jupyter_logo.svg.png" alt="Jupyter"><span>Jupyter</span></div>
-                        <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/1200px-New_Power_BI_Logo.svg.png" alt="LLMs"><span>Power Bi</span></div>
-                        <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png" alt="Git"><span>PostgreSQL</span></div>
-                        <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/826px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png" alt="Git"><span>Excel</span></div>
-                    </div>
-                </div>
+            <div class="grid md:grid-cols-5 gap-12 md:gap-16 items-center">
+              <div class="md:col-span-3 text-secondary space-y-4 text-base md:text-lg">
+                  <p>I'm Hamiz Khan, a Computer Engineering student with a strong foundation in Python, data analytics, machine learning, and AI. With a CGPA of 9.48, I blend academic excellence with practical, project-based learning.</p>
+                  <p>I enjoy turning raw data into meaningful insights using tools like Power BI, SQL, and scikit-learn. I've worked on real-world dashboards, predictive models, and AI-powered applications.</p>
+                  <p>I've also collaborated with U.S.-based teams on client-facing projects involving automation and reporting, and I actively lead tech initiatives as Vice President of COSA and Technical Head of the Coding Club.</p>
+                  <p>Passionate about solving real problems through data and AI, I’m always eager to learn, build, and make an impact.</p>
+              </div>
+              <div class="md:col-span-2 relative h-[350px] md:h-[400px] flex items-center justify-center">
+                <img src="hamiz.jpeg" alt="Hamiz Khan" class="relative w-full h-full object-cover rounded-xl shadow-2xl z-10">
+              </div>
             </div>
-        </div>
-    </section>
+          </div>
+        </section>
 
-    <!-- RESTORED PROJECT SECTION STRUCTURE -->
-    <div id="projects-wrapper" class="relative z-10">
-        <div id="projects-header">
-            <div class="section-heading-container justify-center mb-4">
-                 <div class="heading-decorator"></div>
-                 <h2 class="section-header text-4xl md:text-5xl font-bold text-slate-800">Featured Projects</h2>
+        <section id="education" class="py-20 md:py-28 content-section">
+          <div class="max-w-4xl mx-auto px-6 lg:px-8">
+            <div class="section-heading-container mb-12">
+                <div class="heading-decorator"></div>
+                <h2 class="section-header text-4xl md:text-5xl font-bold text-primary">Education</h2>
             </div>
-            <p class="text-slate-500 text-lg">Use the arrow buttons to explore my projects. Each showcases a unique challenge and creative solution.</p>
-        </div>
-        <section id="projects">
-            <div id="projects-container" class="relative">
-                <button class="project-nav-btn prev" id="prev-btn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="project-nav-btn next" id="next-btn">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-                <div class="projects-grid">
-                    <a href="https://github.com/Hamizkhan08/Nutrifusion-Personalized-Fitness-and-Nutrition-Recommendation-System" class="project-card" target="_blank">
-                        <img src="final.png" alt="Fitness & Nutrition Recommender">
-                        <div class="p-6">
-                            <h3 class="text-slate-800">Fitness & Nutrition Recommender</h3>
-                            <p>Web app generating personalized diet and workout plans via Random Forest.</p>
+            <div class="relative pt-4">
+              <div class="timeline-path"><div class="timeline-path-progress"></div></div>
+              <div class="timeline-item pl-12 mb-12 relative"><div class="timeline-dot absolute"></div><p class="text-sm text-tertiary mb-1">2022 - 2026</p><h3 class="text-xl md:text-2xl font-bold text-primary">Bachelor of Engineering in Computer Engineering</h3><p class="text-lg font-medium text-accent">Guru Gobind Singh College Of Engineering And Research Centre, Nashik</p><p class="mt-2 text-secondary">Current SGPA: 9.48. Deeply involved in AI/ML,Data Analytics ,Data Science, and full-stack development subjects and projects.</p></div>
+              <div class="timeline-item pl-12 relative pt-4"><div class="timeline-dot absolute"></div><p class="text-sm text-tertiary mb-1">2021 - 2022</p><h3 class="text-xl md:text-2xl font-bold text-primary">HSC (Class 12)</h3><p class="text-lg font-medium text-accent">Universal College of Commerce and Science</p><p class="mt-2 text-secondary">Completed higher secondary education with a focus on Physics, Chemistry, and Mathematics, scoring 72.33%.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="experience" class="py-20 md:py-28 content-section">
+          <div class="max-w-4xl mx-auto px-6 lg:px-8">
+            <div class="section-heading-container mb-12">
+                <div class="heading-decorator"></div>
+                <h2 class="section-header text-4xl md:text-5xl font-bold text-primary">Work Experience</h2>
+            </div>
+            <div class="relative pt-4">
+              <div class="timeline-path"><div class="timeline-path-progress"></div></div>
+              <div class="timeline-item pl-12 mb-12 relative">
+                  <div class="timeline-dot absolute"></div>
+                  <p class="text-sm text-tertiary mb-1">Feb 2025 – Present</p>
+                  <h3 class="text-xl md:text-2xl font-bold text-primary">Data Analyst</h3>
+                  <p class="text-lg font-medium text-accent">Falcon Design Solutions, Nashik</p>
+                  <p class="mt-2 text-secondary">Collaborate with a U.S.based steel detailing firm to automate ETL workflows and streamline data pipelines for shop drawing projects. Built Power BI dashboards to visualize project progress and resource utilization. Wrote SQL queries to manage drawing metadata and submittals. Supported cross functional teams with actionable insights.</p>
+              </div>
+              <div class="timeline-item pl-12 relative pt-4">
+                  <div class="timeline-dot absolute"></div>
+                  <p class="text-sm text-tertiary mb-1">Dec 2024 – Feb 2025</p>
+                  <h3 class="text-xl md:text-2xl font-bold text-primary">Data Science Intern</h3>
+                  <p class="text-lg font-medium text-accent">NetLeap IT Training, Nashik</p>
+                  <p class="mt-2 text-secondary">Built a fitness and nutrition recommendation web app using Python-Flask and Random Forest. Designed user input forms to suggest workout and diet plans based on body metrics. Used trainer-curated and web-sourced dataset.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="skills" class="py-20 md:py-28 content-section">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="section-heading-container mb-12">
+                    <div class="heading-decorator"></div>
+                    <h2 class="section-header text-4xl md:text-5xl font-bold text-primary">Skills & Technologies</h2>
+                </div>
+                <div class="space-y-10">
+                    <div class="skill-category">
+                        <h3>Languages</h3>
+                        <div class="skills-grid">
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/452091/python.svg" alt="Python"><span>Python</span></div>
+                            <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/C_Programming_Language.svg/1200px-C_Programming_Language.svg.png" alt="C"><span>C</span></div>
+                            <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png" alt="C++"><span>C++</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/374093/sql.svg" alt="SQL"><span>SQL</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/349419/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/452228/html-5.svg" alt="HTML"><span>HTML</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/452185/css-3.svg" alt="CSS"><span>CSS</span></div>
                         </div>
-                    </a>
-                    <a href="https://github.com/Hamizkhan08/Mindmap" class="project-card" target="_blank">
-                        <img src="mapp.png" alt="YouTube to 3D Mind Map Generator">
-                        <div class="p-6">
-                            <h3 class="text-slate-800">YouTube to 3D Mind Map</h3>
-                            <p>AI-powered tool to visualize video transcripts as interactive 3D mind maps.</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Frameworks & Libraries</h3>
+                         <div class="skills-grid">
+                            <div class="skill-card"><img src="https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/logos/flask-qvsfwhwywucb6zv0d7ce.png/flask-1byb2jlw6nwim4nx2248xg.png?_a=DATAg1AAZAA0" alt="Flask"><span>Flask</span></div>
+                            <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg" alt="TensorFlow"><span>TensorFlow</span></div>
+                            <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Scikit_learn_logo_small.svg/2560px-Scikit_learn_logo_small.svg.png" alt="Scikit-learn"><span>Scikit-learn</span></div>
+                            <div class="skill-card"><img src="https://cdn.worldvectorlogo.com/logos/pandas.svg" alt="Pandas"><span>Pandas</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/373938/numpy.svg" alt="NumPy"><span>NumPy</span></div>
+                            <div class="skill-card"><img src="https://img.icons8.com/?size=512&id=TkX1totjFmAD&format=png" alt="Matplotlib"><span>Matplotlib</span></div>
+                            <div class="skill-card"><img src="https://cdn.worldvectorlogo.com/logos/seaborn-1.svg" alt="Seaborn"><span>Seaborn</span></div>
                         </div>
-                    </a>
-                    <a href="https://github.com/Hamizkhan08/Customer-Segmentation-Marketing-Analysis" class="project-card" target="_blank">
-                        <img src="image2.png" alt="ATM Cash Run-Out Predictor">
-                        <div class="p-6">
-                            <h3 class="text-slate-800">Customer Segmentation Marketing Analysis </h3>
-                            <p>Performs customer segmentation using unsupervised machine learning</p>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools</h3>
+                        <div class="skills-grid">
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/452210/git.svg" alt="Git"><span>Git</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/373848/mysql.svg" alt="MySQL"><span>MySQL</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/374171/vscode.svg" alt="VS Code"><span>VS Code</span></div>
+                            <div class="skill-card"><img src="cognos-analytics-svgrepo-com.svg" alt="IBM Cognos Analytics"><span>IBM Cognos</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/354012/looker-icon.svg" alt="Looker"><span>Looker Studio</span></div>
+                            <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/1767px-Jupyter_logo.svg.png" alt="Jupyter"><span>Jupyter</span></div>
+                            <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/1200px-New_Power_BI_Logo.svg.png" alt="Power BI"><span>Power BI</span></div>
+                            <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png" alt="PostgreSQL"><span>PostgreSQL</span></div>
+                            <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/826px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png" alt="Excel"><span>Excel</span></div>
                         </div>
-                    </a>
-                    <a href="https://github.com/Hamizkhan08/FacePluse-Missing-Person-Matcher-for-Disaster-Response" class="project-card" target="_blank">
-                        <img src="miss.png" alt="Missing Person Matcher">
-                        <div class="p-6">
-                            <h3 class="text-slate-800">Missing Person Matcher</h3>
-                            <p>Facial recognition tool for identifying missing persons in disaster response.</p>
-                        </div>
-                    </a>
-                    <a href="https://github.com/Hamizkhan08/Job-Resume-Classifier" class="project-card" target="_blank">
-                        <img src="job.png" alt="Job Resume Classifier">
-                        <div class="p-6">
-                            <h3 class="text-slate-800">Job Resume Classifier</h3>
-                            <p>ML app to classify resumes into job roles using NLP.</p>
-                        </div>
-                    </a>
-                    <a href="https://github.com/Hamizkhan08/atm-prediction" class="project-card" target="_blank">
-                        <img src="Screenshot 2025-06-20 121225.png" alt="ATM Cash Run-Out Predictor">
-                        <div class="p-6">
-                            <h3 class="text-slate-800">ATM Cash Predictor</h3>
-                            <p>Predicts cash shortages using historical data for proactive bank alerts.</p>
-                        </div>
-                    </a>
-                    <a href="https://github.com/Hamizkhan08" class="project-card" target="_blank">
-                        <img src="image.png" alt="More Projects">
-                        <div class="p-6">
-                            <h3 class="text-slate-800">And Many More...</h3>
-                            <p>Explore my GitHub to see the full range of my work and contributions.</p>
-                        </div>
-                    </a>
+                    </div>
                 </div>
             </div>
         </section>
     </div>
 </main>
 
-<footer class="py-24 z-10 relative">
-  <div class="container mx-auto px-6 lg:px-8 text-center">
-    <h2 class="text-4xl md:text-6xl font-bold">Let's Build Together</h2>
-    <p class="text-lg text-slate-300 mt-4 max-w-xl mx-auto">Have a project in mind or an opportunity to discuss? I'd love to hear from you.</p>
-    <a href="https://www.linkedin.com/in/hamiz-khan-2b5866215/" class="mt-10 inline-block bg-gray-200 text-gray-800 font-bold py-4 px-10 rounded-full text-xl hover:bg-white transition-colors duration-300 transform hover:scale-105">Get In Touch</a>
-    <div class="flex justify-center space-x-8 mt-16 text-3xl text-slate-400">
-      <a href="https://github.com/Hamizkhan08" target="_blank" class="hover:text-white transition-transform duration-300 transform hover:scale-110"><i class="fab fa-github"></i></a>
-      <a href="https://linkedin.com/in/hamiz-khan-2b5866215" target="_blank" class="hover:text-white transition-transform duration-300 transform hover:scale-110"><i class="fab fa-linkedin"></i></a>
+<div id="projects-wrapper" class="relative -mx-4 sm:-mx-6 lg:-mx-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div id="projects-header">
+        <div class="section-heading-container justify-center mb-4">
+             <div class="heading-decorator"></div>
+             <h2 class="section-header text-4xl md:text-5xl font-bold text-primary">Featured Projects</h2>
+        </div>
+        <p class="text-secondary text-lg">Use the arrow buttons to explore my projects. Each showcases a unique challenge and creative solution.</p>
     </div>
-    <p class="mt-16 text-sm text-slate-500">© 2025 Hamiz Khan.<br> hamiz.afkhan@gmail.com </p>
+  </div>
+
+  <div id="projects-container">
+      <button class="project-nav-btn prev" id="prev-btn" aria-label="Previous Project"><i class="fas fa-chevron-left"></i></button>
+      <button class="project-nav-btn next" id="next-btn" aria-label="Next Project"><i class="fas fa-chevron-right"></i></button>
+
+      <div class="projects-grid">
+          <a href="https://github.com/Hamizkhan08/Nutrifusion-Personalized-Fitness-and-Nutrition-Recommendation-System" class="project-card" target="_blank" rel="noopener noreferrer">
+              <img src="final.png" alt="Fitness & Nutrition Recommender">
+              <div class="p-5">
+                  <h3 class="text-primary text-lg font-bold">Fitness & Nutrition Recommender</h3>
+                  <p class="text-secondary mt-1 text-sm">Web app generating personalized diet and workout plans via Random Forest.</p>
+              </div>
+          </a>
+          <a href="https://github.com/Hamizkhan08/Mindmap" class="project-card" target="_blank" rel="noopener noreferrer">
+              <img src="mapp.png" alt="YouTube to 3D Mind Map Generator">
+              <div class="p-5">
+                  <h3 class="text-primary text-lg font-bold">YouTube to 3D Mind Map</h3>
+                  <p class="text-secondary mt-1 text-sm">AI-powered tool to visualize video transcripts as interactive 3D mind maps.</p>
+              </div>
+          </a>
+          <a href="https://github.com/Hamizkhan08/Customer-Segmentation-Marketing-Analysis" class="project-card" target="_blank" rel="noopener noreferrer">
+              <img src="image2.png" alt="Customer Segmentation">
+              <div class="p-5">
+                  <h3 class="text-primary text-lg font-bold">Customer Segmentation Analysis</h3>
+                  <p class="text-secondary mt-1 text-sm">Performs customer segmentation using unsupervised machine learning.</p>
+              </div>
+          </a>
+          <a href="https://github.com/Hamizkhan08/FacePluse-Missing-Person-Matcher-for-Disaster-Response" class="project-card" target="_blank" rel="noopener noreferrer">
+              <img src="miss.png" alt="Missing Person Matcher">
+              <div class="p-5">
+                  <h3 class="text-primary text-lg font-bold">Missing Person Matcher</h3>
+                  <p class="text-secondary mt-1 text-sm">Facial recognition tool for identifying missing persons in disaster response.</p>
+              </div>
+          </a>
+          <a href="https://github.com/Hamizkhan08/Job-Resume-Classifier" class="project-card" target="_blank" rel="noopener noreferrer">
+              <img src="job.png" alt="Job Resume Classifier">
+              <div class="p-5">
+                  <h3 class="text-primary text-lg font-bold">Job Resume Classifier</h3>
+                  <p class="text-secondary mt-1 text-sm">ML app to classify resumes into job roles using NLP.</p>
+              </div>
+          </a>
+          <a href="https://github.com/Hamizkhan08/atm-prediction" class="project-card" target="_blank" rel="noopener noreferrer">
+              <img src="Screenshot 2025-06-20 121225.png" alt="ATM Cash Predictor">
+              <div class="p-5">
+                  <h3 class="text-primary text-lg font-bold">ATM Cash Predictor</h3>
+                  <p class="text-secondary mt-1 text-sm">Predicts cash shortages using historical data for proactive bank alerts.</p>
+              </div>
+          </a>
+          <a href="https://github.com/Hamizkhan08" class="project-card" target="_blank" rel="noopener noreferrer">
+              <img src="image.png" alt="More Projects">
+              <div class="p-5">
+                  <h3 class="text-primary text-lg font-bold">And Many More...</h3>
+                  <p class="text-secondary mt-1 text-sm">Explore my GitHub to see the full range of my work and contributions.</p>
+              </div>
+          </a>
+      </div>
+  </div>
+</div>
+
+<footer class="py-20 z-10 relative">
+  <div class="max-w-7xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+    <h2 class="text-4xl md:text-5xl font-bold">Let's Build Together</h2>
+    <p class="text-lg text-slate-300 mt-4 max-w-2xl mx-auto">Have a project in mind or an opportunity to discuss? I'd love to hear from you.</p>
+    <a href="https://www.linkedin.com/in/hamiz-khan-2b5866215/" class="mt-8 inline-block bg-gray-200 text-gray-800 font-bold py-3 px-8 rounded-full text-lg hover:bg-white transition-colors duration-300 transform hover:scale-105">Get In Touch</a>
+    <div class="flex justify-center space-x-8 mt-12 text-3xl text-slate-400">
+      <a href="https://github.com/Hamizkhan08" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-transform duration-300 transform hover:scale-110" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/hamiz-khan-2b5866215" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-transform duration-300 transform hover:scale-110" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <p class="mt-12 text-sm text-slate-500">&copy; 2025 Hamiz Khan.<br> hamiz.afkhan@gmail.com </p>
   </div>
 </footer>
 
@@ -523,13 +495,22 @@
 document.addEventListener('DOMContentLoaded', function() {
     gsap.registerPlugin(ScrollTrigger);
 
-    window.addEventListener('load', () => {
-        gsap.to('#preloader', { opacity: 0, duration: 0.8, onComplete: () => {
-            document.getElementById('preloader').style.display = 'none';
-            document.body.style.overflow = 'auto';
-            initPage();
-        }});
-    });
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        window.addEventListener('load', () => {
+            gsap.to(preloader, {
+                opacity: 0,
+                duration: 0.8,
+                onComplete: () => {
+                    preloader.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    initPage();
+                }
+            });
+        });
+    } else {
+        initPage();
+    }
 
     function initPage() {
         initTheme();
@@ -545,6 +526,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function initTheme() {
         const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        if (!themeToggleBtn) return;
         themeToggleBtn.addEventListener('click', () => {
             document.documentElement.classList.toggle('dark');
         });
@@ -552,7 +534,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function initNavbar() {
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => navbar.classList.toggle('navbar-scrolled', window.scrollY > 50));
+        if (!navbar) return;
+        const handleScroll = () => {
+            navbar.classList.toggle('navbar-scrolled', window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
     }
 
     function initHero3D() {
@@ -573,15 +560,19 @@ document.addEventListener('DOMContentLoaded', function() {
         pointLight.position.set(5, 5, 5);
         scene.add(pointLight);
         let mouse = new THREE.Vector2();
-        document.addEventListener('mousemove', e => {
+        const onMouseMove = e => {
             mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
             mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-        });
-        window.addEventListener('resize', () => {
-            camera.aspect = container.clientWidth / container.clientHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(container.clientWidth, container.clientHeight);
-        });
+        };
+        document.addEventListener('mousemove', onMouseMove);
+        const onResize = () => {
+            if (container.clientWidth > 0 && container.clientHeight > 0) {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            }
+        };
+        window.addEventListener('resize', onResize);
         function animate() {
             requestAnimationFrame(animate);
             gsap.to(model.rotation, { y: mouse.x * 0.8, x: -mouse.y * 0.8, duration: 2, ease: 'power2.out' });
@@ -593,12 +584,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function initCustomCursor() {
         const cursorDot = document.getElementById('cursor-dot');
         const cursorCircle = document.getElementById('cursor-circle');
-        let dotX = 0, dotY = 0;
+        if (!cursorDot || !cursorCircle) return;
         window.addEventListener('mousemove', e => {
-            dotX = e.clientX;
-            dotY = e.clientY;
-            gsap.to(cursorDot, { x: dotX, y: dotY, duration: 0.3, ease: "power2.out" });
-            gsap.to(cursorCircle, { x: dotX - 20, y: dotY - 20, duration: 0.7, ease: "power2.out" });
+            gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.3, ease: "power2.out" });
+            gsap.to(cursorCircle, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.7, ease: "power2.out" });
         });
         document.querySelectorAll('a, button, .project-card, .timeline-item, .skill-card').forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
@@ -609,8 +598,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function initScrollAnimations() {
         gsap.utils.toArray('.timeline-item').forEach(item => {
             gsap.from(item, {
-                opacity: 0, y: 50, duration: 0.6,
-                scrollTrigger: { trigger: item, start: "top 85%" }
+                opacity: 0, x: -50, duration: 0.6,
+                scrollTrigger: { trigger: item, start: "top 90%", toggleActions: "play none none none" }
             });
         });
         gsap.to('.timeline-path-progress', {
@@ -619,9 +608,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         gsap.utils.toArray('.skill-category').forEach(category => {
             gsap.to(category.querySelectorAll('.skill-card'), {
-                opacity: 1, y: 0, scale: 1,
-                stagger: 0.08, duration: 0.6, ease: 'power3.out',
-                scrollTrigger: { trigger: category, start: 'top 80%', }
+                opacity: 1, y: 0,
+                stagger: 0.05, duration: 0.5, ease: 'power2.out',
+                scrollTrigger: { trigger: category, start: 'top 85%' }
             });
         });
     }
@@ -631,23 +620,33 @@ document.addEventListener('DOMContentLoaded', function() {
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
         if (!projectsGrid || !prevBtn || !nextBtn) return;
-        const cardWidth = 360 + 40;
-        const scrollAmount = cardWidth * 2;
+
+        const scrollAmount = () => {
+             const card = projectsGrid.querySelector('.project-card');
+             if (!card) return 300;
+             // Scroll by the width of one card plus its gap
+             const cardStyle = window.getComputedStyle(card);
+             const cardMargin = parseFloat(cardStyle.marginRight) || 0;
+             return card.offsetWidth + cardMargin;
+        };
+
         nextBtn.addEventListener('click', () => {
-            projectsGrid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            projectsGrid.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
         });
         prevBtn.addEventListener('click', () => {
-            projectsGrid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            projectsGrid.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
         });
-        function updateButtonStates() {
+
+        const updateButtonStates = () => {
             const { scrollLeft, scrollWidth, clientWidth } = projectsGrid;
-            prevBtn.style.opacity = scrollLeft <= 0 ? '0.5' : '1';
-            prevBtn.style.pointerEvents = scrollLeft <= 0 ? 'none' : 'auto';
-            nextBtn.style.opacity = scrollLeft >= scrollWidth - clientWidth - 1 ? '0.5' : '1';
-            nextBtn.style.pointerEvents = scrollLeft >= scrollWidth - clientWidth - 1 ? 'none' : 'auto';
-        }
-        projectsGrid.addEventListener('scroll', updateButtonStates);
-        updateButtonStates();
+            prevBtn.disabled = scrollLeft <= 0;
+            nextBtn.disabled = scrollLeft >= scrollWidth - clientWidth - 1;
+        };
+
+        projectsGrid.addEventListener('scroll', updateButtonStates, { passive: true });
+        window.addEventListener('resize', updateButtonStates);
+        // Use a small timeout to ensure layout is calculated after load
+        setTimeout(updateButtonStates, 100);
     }
 
     function initTextAnimations() {
@@ -656,11 +655,14 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.section-heading-container').forEach((elem) => {
             const header = elem.querySelector('.section-header');
             const decorator = elem.querySelector('.heading-decorator');
-            gsap.from(decorator, {
-                scaleY: 0, transformOrigin: 'bottom', duration: 0.8, ease: 'power3.out',
-                scrollTrigger: { trigger: elem, start: 'top 85%', toggleActions: 'play none none none' }
-            });
-            if (header) {
+            if (decorator) {
+                gsap.from(decorator, {
+                    scaleY: 0, transformOrigin: 'bottom', duration: 0.8, ease: 'power3.out',
+                    scrollTrigger: { trigger: elem, start: 'top 85%', toggleActions: 'play none none none' }
+                });
+            }
+            if (header && !header.classList.contains('animated')) {
+                header.classList.add('animated');
                 const text = header.textContent; header.innerHTML = '';
                 text.split('').forEach(char => {
                     const span = document.createElement('span');
