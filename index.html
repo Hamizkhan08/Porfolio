@@ -104,6 +104,62 @@
     .skill-card img { height: 40px; width: 40px; object-fit: contain; transition: transform 0.3s ease; }
     .skill-card span { margin-top: 0.75rem; font-weight: 500; font-size: 0.875rem; text-align: center; }
 
+    /* --- CERTIFICATIONS --- */
+    #certifications-wrapper { padding: 6rem 0; }
+    #certifications-header {
+        max-width: 700px;
+        margin: 0 auto 4rem auto;
+        text-align: center;
+        padding: 0 1rem;
+    }
+    #certifications-container { position: relative; }
+    .certifications-grid {
+        display: flex;
+        gap: 1.5rem;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        padding: 1rem clamp(1rem, 5vw, 4rem);
+    }
+    .certifications-grid::-webkit-scrollbar { display: none; }
+
+    .certification-card {
+        flex: 0 0 clamp(280px, 80vw, 350px);
+        overflow: hidden;
+        border-radius: 1rem;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .certification-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+    }
+    .certification-card img {
+        width: 100%;
+        height: 12rem;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+    .certification-card:hover img { transform: scale(1.05); }
+
+    /* --- CERTIFICATION NAVIGATION BUTTONS --- */
+    .cert-nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 50%;
+        width: 50px; height: 50px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.25rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
+    }
+    .cert-nav-btn:hover { transform: translateY(-50%) scale(1.1); }
+    .cert-nav-btn.prev { left: clamp(0.5rem, 3vw, 2rem); }
+    .cert-nav-btn.next { right: clamp(0.5rem, 3vw, 2rem); }
+    .cert-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
     /* --- PROJECTS --- */
     #projects-wrapper { padding: 6rem 0; }
     #projects-header {
@@ -190,6 +246,11 @@
     html.dark .skill-category { background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; } /* gray-800, gray-700 */
     html.dark .skill-card { background: #374151; border: 1px solid #4b5563; } /* gray-700, gray-600 */
     html.dark .skill-card:hover { box-shadow: 0 0 20px rgba(167, 139, 250, 0.15); border-color: #8b5cf6; background: #4b5563;}
+    html.dark #certifications-wrapper { background-color: rgba(17, 24, 39, 0.7); } /* gray-900 */
+    html.dark .certification-card { background-color: #1f2937; border: 1px solid #374151; } /* gray-800, gray-700 */
+    html.dark .certification-card:hover { border-color: #8b5cf6; } /* violet-500 */
+    html.dark .cert-nav-btn { background: #1f2937; border: 1px solid #374151; color: #d1d5db; }
+    html.dark .cert-nav-btn:hover { background: #374151; }
     html.dark #projects-wrapper { background-color: rgba(17, 24, 39, 0.7); } /* gray-900 */
     html.dark .project-card { background-color: #1f2937; border: 1px solid #374151; } /* gray-800, gray-700 */
     html.dark .project-card:hover { border-color: #8b5cf6; } /* violet-500 */
@@ -219,6 +280,7 @@
     html:not(.dark) .nav-link { color: #4b5563; } /* gray-600 */
     html:not(.dark) .nav-link:hover { color: #111827; } /* gray-900 */
     html:not(.dark) .nav-link::after { background-color: #6366f1; } /* indigo-500 */
+    html:not(.dark) .nav-link:hover::after { width: 100%; }
     html:not(.dark) .text-primary { color: #111827; } /* gray-900 (was slate-800) */
     html:not(.dark) .text-secondary { color: #4b5563; } /* gray-600 (was slate-600) */
     html.not(dark) .text-tertiary { color: #6b7280; } /* gray-500 (was slate-500) */
@@ -231,6 +293,11 @@
     html:not(.dark) .skill-category { background: #ffffff; border: 1px solid #e5e7eb; } /* gray-200 */
     html:not(.dark) .skill-card { background: #f9fafb; border: 1px solid #e5e7eb; } /* gray-50, gray-200 */
     html:not(.dark) .skill-card:hover { box-shadow: 0 0 20px rgba(99, 102, 241, 0.15); border-color: #8b5cf6; background-color: #fff; }
+    html:not(.dark) #certifications-wrapper { background-color: #f3f4f6; } /* gray-100 */
+    html:not(.dark) .certification-card { background: #ffffff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1); border: 1px solid #e5e7eb; }
+    html:not(.dark) .certification-card:hover { border-color: #8b5cf6; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); }
+    html:not(.dark) .cert-nav-btn { background: #ffffff; border: 1px solid #e5e7eb; color: #4f46e5; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+    html:not(.dark) .cert-nav-btn:hover { background: #f3f4f6; }
     html:not(.dark) #projects-wrapper { background-color: #f3f4f6; } /* gray-100 */
     html:not(.dark) .project-card { background: #ffffff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1); border: 1px solid #e5e7eb; }
     html:not(.dark) .project-card:hover { border-color: #8b5cf6; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); }
@@ -269,6 +336,7 @@
             <a href="#education" class="nav-link">Education</a>
             <a href="#experience" class="nav-link">Experience</a>
             <a href="#skills" class="nav-link">Skills</a>
+            <a href="#certifications-wrapper" class="nav-link">Certifications</a>
             <a href="#projects-wrapper" class="nav-link">Projects</a>
         </div>
         <div class="flex items-center space-x-4">
@@ -409,6 +477,33 @@
     </div>
 </main>
 
+<div id="certifications-wrapper" class="relative -mx-4 sm:-mx-6 lg:-mx-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div id="certifications-header">
+        <div class="section-heading-container justify-center mb-4">
+             <div class="heading-decorator"></div>
+             <h2 class="section-header text-4xl md:text-5xl font-bold text-primary">Certifications</h2>
+        </div>
+        <p class="text-secondary text-lg">My professional certifications and achievements.</p>
+    </div>
+  </div>
+
+  <div id="certifications-container">
+      <button class="cert-nav-btn prev" id="cert-prev-btn" aria-label="Previous Certification"><i class="fas fa-chevron-left"></i></button>
+      <button class="cert-nav-btn next" id="cert-next-btn" aria-label="Next Certification"><i class="fas fa-chevron-right"></i></button>
+
+      <div class="certifications-grid">
+          <a href="https://www.credly.com/badges/your-ibm-data-analyst-badge-link" class="certification-card" target="_blank" rel="noopener noreferrer">
+              <img src="certifications.png" alt="IBM Data Analyst Professional Certificate">
+              <div class="p-5">
+                  <h3 class="text-primary text-lg font-bold">IBM Data Analyst Professional Certificate</h3>
+                  <p class="text-secondary mt-1 text-sm">Completed comprehensive training in data analysis tools and techniques.</p>
+              </div>
+          </a>
+      </div>
+  </div>
+</div>
+
 <div id="projects-wrapper" class="relative -mx-4 sm:-mx-6 lg:-mx-8">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div id="projects-header">
@@ -521,6 +616,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initCustomCursor();
         initScrollAnimations();
         initTextAnimations();
+        initCertificationNavigation(); // Initialize new certification navigation
         initProjectNavigation();
     }
 
@@ -589,7 +685,7 @@ document.addEventListener('DOMContentLoaded', function() {
             gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.3, ease: "power2.out" });
             gsap.to(cursorCircle, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.7, ease: "power2.out" });
         });
-        document.querySelectorAll('a, button, .project-card, .timeline-item, .skill-card').forEach(el => {
+        document.querySelectorAll('a, button, .project-card, .certification-card, .timeline-item, .skill-card').forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
         });
@@ -613,6 +709,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 scrollTrigger: { trigger: category, start: 'top 85%' }
             });
         });
+    }
+
+    function initCertificationNavigation() {
+        const certificationsGrid = document.querySelector('.certifications-grid');
+        const prevBtn = document.getElementById('cert-prev-btn');
+        const nextBtn = document.getElementById('cert-next-btn');
+        if (!certificationsGrid || !prevBtn || !nextBtn) return;
+
+        const scrollAmount = () => {
+             const card = certificationsGrid.querySelector('.certification-card');
+             if (!card) return 300;
+             const cardStyle = window.getComputedStyle(card);
+             const cardMargin = parseFloat(cardStyle.marginRight) || 0;
+             return card.offsetWidth + cardMargin;
+        };
+
+        nextBtn.addEventListener('click', () => {
+            certificationsGrid.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+        });
+        prevBtn.addEventListener('click', () => {
+            certificationsGrid.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+        });
+
+        const updateButtonStates = () => {
+            const { scrollLeft, scrollWidth, clientWidth } = certificationsGrid;
+            prevBtn.disabled = scrollLeft <= 0;
+            nextBtn.disabled = scrollLeft >= scrollWidth - clientWidth - 1;
+        };
+
+        certificationsGrid.addEventListener('scroll', updateButtonStates, { passive: true });
+        window.addEventListener('resize', updateButtonStates);
+        setTimeout(updateButtonStates, 100);
     }
 
     function initProjectNavigation() {
@@ -678,6 +806,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 );
             }
+        });
+        gsap.from("#certifications-header", {
+            opacity: 0, y: 40, duration: 0.8,
+            scrollTrigger: { trigger: "#certifications-header", start: "top 85%" }
         });
         gsap.from("#projects-header", {
             opacity: 0, y: 40, duration: 0.8,
