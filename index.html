@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark"> <!-- Dark mode is default -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +11,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
     /* --- GENERAL & CURSOR STYLES --- */
     html { scroll-behavior: smooth; }
     body {
-        font-family: 'Inter', sans-serif; /* Changed to Inter for body text */
+        font-family: 'Poppins', sans-serif;
         overflow-x: hidden;
         transition: background-color 0.5s ease, color 0.5s ease;
         cursor: none; /* Hide default cursor */
@@ -83,7 +82,7 @@
         width: 0.75rem; height: 2.5rem; border-radius: 0.25rem;
         transition: all 0.5s ease;
     }
-    .section-header { flex-shrink: 0; font-family: 'Space Grotesk', sans-serif; } /* Changed font */
+    .section-header { flex-shrink: 0; }
     .section-header .char { display: inline-block; }
 
     /* --- TIMELINE --- */
@@ -314,228 +313,6 @@
     html:not(.dark) ::-webkit-scrollbar-track { background: #e5e7eb; } /* gray-200 */
     html:not(.dark) ::-webkit-scrollbar-thumb { background: #a5b4fc; border-radius: 10px; } /* indigo-300 */
     html:not(.dark) ::-webkit-scrollbar-thumb:hover { background: #818cf8; } /* indigo-400 */
-
-    /* Custom styles from image design */
-    .hero-heading {
-        font-family: 'Space Grotesk', sans-serif;
-        font-weight: 700;
-        text-transform: uppercase;
-        font-size: 6rem; /* Adjust as needed */
-        letter-spacing: -0.05em;
-        line-height: 0.9;
-    }
-
-    .subtitle-text {
-        font-family: 'Inter', sans-serif;
-        font-weight: 500;
-        line-height: 1.5;
-        font-size: 1.125rem; /* text-lg */
-    }
-
-    .nakula-button {
-        background: linear-gradient(90deg, #FF6F00, #FFD54F); /* Orange/Yellow gradient */
-        color: #111827; /* Dark text for contrast */
-        font-family: 'Space Grotesk', sans-serif;
-        font-weight: 700;
-        padding: 0.75rem 2rem;
-        border-radius: 9999px; /* Fully rounded */
-        box-shadow: 0 4px 10px rgba(255, 111, 0, 0.4);
-        transition: all 0.3s ease;
-    }
-    .nakula-button:hover {
-        transform: translateY(-2px) scale(1.02);
-        box-shadow: 0 6px 15px rgba(255, 111, 0, 0.6);
-    }
-
-    .navbar-nakula-style {
-        background-color: transparent;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    html.dark .navbar-nakula-style.navbar-scrolled {
-        background-color: rgba(17, 24, 39, 0.6);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    html:not(.dark) .navbar-nakula-style.navbar-scrolled {
-        background-color: rgba(249, 250, 251, 0.6);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    .nakula-nav-link {
-        font-family: 'Inter', sans-serif;
-        font-weight: 500;
-        color: #D1D5DB; /* light gray */
-        position: relative;
-        padding: 0.5rem 0;
-    }
-    html.dark .nakula-nav-link:hover { color: #FFFFFF; }
-    html:not(.dark) .nakula-nav-link { color: #4B5563; }
-    html:not(.dark) .nakula-nav-link:hover { color: #1F2937; }
-
-    .nakula-nav-link::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: 0;
-        left: 0;
-        background-color: #FF6F00; /* Orange highlight */
-        transition: width 0.3s ease-out;
-    }
-    .nakula-nav-link:hover::after { width: 100%; }
-
-    .nakula-logo {
-        font-family: 'Space Grotesk', sans-serif;
-        font-weight: 700;
-        font-size: 2.25rem; /* text-4xl */
-        letter-spacing: -0.05em;
-        color: #FFFFFF; /* White for logo */
-    }
-    html:not(.dark) .nakula-logo { color: #111827; }
-
-    .about-image-nakula {
-        border-radius: 0.75rem; /* Rounded-xl in Tailwind */
-        border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-    }
-    html:not(.dark) .about-image-nakula {
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-    }
-
-    .content-section.nakula-bg {
-        background: rgba(17, 24, 39, 0.6); /* Darker, more opaque */
-        border: 1px solid rgba(255, 255, 255, 0.08); /* Thinner, lighter border */
-        backdrop-filter: blur(12px); /* Stronger blur */
-        border-radius: 1.5rem; /* More rounded */
-        padding: 4rem; /* More padding */
-    }
-    html:not(.dark) .content-section.nakula-bg {
-        background: rgba(255, 255, 255, 0.8);
-        border: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    .timeline-dot.nakula-style {
-        background-color: #1f2937;
-        border: 3px solid #FF6F00; /* Orange dot */
-    }
-    html:not(.dark) .timeline-dot.nakula-style {
-        background-color: #ffffff;
-        border: 3px solid #FF6F00;
-    }
-
-    .timeline-path-progress.nakula-style {
-        background: linear-gradient(to bottom, #FFD54F, #FF6F00); /* Orange/Yellow gradient */
-    }
-
-    .skill-category.nakula-style {
-        background: rgba(31, 41, 55, 0.7); /* Slightly darker */
-        border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    html:not(.dark) .skill-category.nakula-style {
-        background: rgba(255, 255, 255, 0.9);
-        border: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
-    .skill-card.nakula-style {
-        background: #2D3748; /* Slightly lighter than category background */
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
-    html.dark .skill-card.nakula-style:hover {
-        border-color: #FF6F00;
-        background: #3a475a;
-        box-shadow: 0 0 25px rgba(255, 111, 0, 0.2);
-    }
-    html:not(.dark) .skill-card.nakula-style {
-        background: #f0f4f7;
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-    html:not(.dark) .skill-card.nakula-style:hover {
-        border-color: #FF6F00;
-        background: #ffffff;
-        box-shadow: 0 0 25px rgba(255, 111, 0, 0.1);
-    }
-
-    .card-nakula-style {
-        background-color: #1F2937; /* Darker background */
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 1rem;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-    html.dark .card-nakula-style:hover { border-color: #FF6F00; }
-    html:not(.dark) .card-nakula-style {
-        background-color: #ffffff;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-    }
-    html:not(.dark) .card-nakula-style:hover { border-color: #FF6F00; }
-
-    .nav-btn-nakula {
-        background: rgba(31, 41, 55, 0.8);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: #d1d5db;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-    html.dark .nav-btn-nakula:hover { background: #374151; }
-    html:not(.dark) .nav-btn-nakula {
-        background: rgba(255, 255, 255, 0.9);
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        color: #4f46e5;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    html:not(.dark) .nav-btn-nakula:hover { background: #f3f4f6; }
-
-    #contact-btn.nakula-style {
-        border: 2px solid #FF6F00; /* Orange border */
-        color: #FF6F00; /* Orange text */
-        background-color: transparent;
-        font-family: 'Space Grotesk', sans-serif;
-        font-weight: 700;
-        padding: 0.65rem 1.8rem;
-    }
-    #contact-btn.nakula-style:hover {
-        background-color: #FF6F00;
-        color: white;
-        box-shadow: 0 5px 15px rgba(255, 111, 0, 0.4);
-    }
-    html:not(.dark) #contact-btn.nakula-style {
-        color: #FF6F00;
-        border-color: #FF6F00;
-    }
-    html:not(.dark) #contact-btn.nakula-style:hover {
-        background-color: #FF6F00;
-        color: white;
-    }
-
-    footer.nakula-style {
-        background-color: #111827; /* Darker footer */
-        color: #D1D5DB;
-        padding-top: 5rem;
-        padding-bottom: 5rem;
-    }
-    footer.nakula-style .text-slate-300 { color: #9CA3AF; }
-    footer.nakula-style .text-slate-400 { color: #6B7280; }
-    footer.nakula-style .text-slate-500 { color: #4B5563; }
-    footer.nakula-style .bg-gray-200 {
-        background-color: #FF6F00; /* Orange button */
-        color: white;
-    }
-    footer.nakula-style .bg-gray-200:hover {
-        background-color: #FF8F00; /* Lighter orange on hover */
-    }
-    footer.nakula-style .hover\:text-white:hover { color: #FF6F00; } /* Orange social icon hover */
-    html:not(.dark) footer.nakula-style {
-        background-color: #F9FAFB;
-        color: #374151;
-    }
-    html:not(.dark) footer.nakula-style .text-slate-300 { color: #6B7280; }
-    html:not(.dark) footer.nakula-style .text-slate-400 { color: #9CA3AF; }
-    html:not(.dark) footer.nakula-style .text-slate-500 { color: #D1D5DB; }
-
-
 </style>
 
 </head>
@@ -551,20 +328,20 @@
 <div id="cursor-dot"></div>
 <div id="cursor-circle"></div>
 
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 navbar-nakula-style">
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50">
     <div class="mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4 max-w-7xl">
-        <a href="#" class="nakula-logo">Nakula</a>
+        <a href="#" class="text-3xl font-bold text-primary tracking-wide">HK.</a>
         <div class="hidden md:flex items-center space-x-8">
-            <a href="#about" class="nakula-nav-link">About</a>
-            <a href="#education" class="nakula-nav-link">Education</a>
-            <a href="#experience" class="nakula-nav-link">Experience</a>
-            <a href="#skills" class="nakula-nav-link">Skills</a>
-            <a href="#certifications-wrapper" class="nakula-nav-link">Certifications</a>
-            <a href="#projects-wrapper" class="nakula-nav-link">Projects</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#education" class="nav-link">Education</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#certifications-wrapper" class="nav-link">Certifications</a>
+            <a href="#projects-wrapper" class="nav-link">Projects</a>
         </div>
         <div class="flex items-center space-x-4">
             <button id="theme-toggle-btn" class="rounded-full flex items-center justify-center text-xl transition-all duration-300 transform hover:scale-110"><i class="fas fa-sun"></i><i class="fas fa-moon"></i></button>
-            <a href="https://www.linkedin.com/in/hamiz-khan-2b5866215/" id="contact-btn" class="nakula-style rounded-full px-5 py-2 font-medium transition-all duration-300 transform hover:scale-105">Contact</a>
+            <a href="https://www.linkedin.com/in/hamiz-khan-2b5866215/" id="contact-btn" class="rounded-full px-5 py-2 font-medium transition-all duration-300 transform hover:scale-105">Contact</a>
         </div>
     </div>
 </nav>
@@ -574,30 +351,22 @@
         <div class="container mx-auto px-4 w-full">
             <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div class="text-center md:text-left">
-                    <h1 class="hero-heading text-primary leading-tight hero-element">
-                        <span>Beyond Visuals.</span><br>
-                        <span>Built with Vision.</span>
+                    <h1 class="text-5xl sm:text-6xl lg:text-8xl font-extrabold text-primary leading-tight hero-element">
+                        <span>Khan Hamiz</span>
                     </h1>
-                    <p class="subtitle-text mt-6 text-secondary max-w-xl mx-auto md:mx-0 hero-element">
-                        We build brands, websites, and digital experiences with
-                        intensity, clarity, and care.
+                    <p class="text-lg md:text-xl mt-6 text-secondary font-medium max-w-xl mx-auto md:mx-0 hero-element">
+                        Computer Engineering student eager to build impactful, data-driven solutions in a growth-focused environment.
                     </p>
-                    <div class="mt-8 hero-element">
-                        <button class="nakula-button">
-                            Start a project <i class="fas fa-arrow-right ml-2"></i>
-                        </button>
-                    </div>
                 </div>
                 <div id="hero-3d-container">
-                    <!-- Image provided shows a person's eye, 3D object removed for this design based on the image -->
-                    <img src="https://i.ibb.co/C0f9076/hero-eye.png" alt="Nakula Design Studio Eye" class="w-full h-auto object-cover rounded-xl" />
+                    <canvas id="hero-3d-canvas"></canvas>
                 </div>
             </div>
         </div>
     </section>
 
     <div class="space-y-20 md:space-y-32">
-        <section id="about" class="py-20 md:py-28 content-section nakula-bg">
+        <section id="about" class="py-20 md:py-28 content-section">
           <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="section-heading-container mb-12">
                 <div class="heading-decorator"></div>
@@ -611,43 +380,43 @@
                   <p>Passionate about solving real problems through data and AI, I’m always eager to learn, build, and make an impact.</p>
               </div>
               <div class="md:col-span-2 relative h-[350px] md:h-[400px] flex items-center justify-center">
-                <img src="hamizz.jpeg" alt="Hamiz Khan" class="about-image-nakula relative w-full h-full object-cover rounded-xl shadow-2xl z-10">
+                <img src="hamizz.jpeg" alt="Hamiz Khan" class="relative w-full h-full object-cover rounded-xl shadow-2xl z-10">
               </div>
             </div>
           </div>
         </section>
 
-        <section id="education" class="py-20 md:py-28 content-section nakula-bg">
+        <section id="education" class="py-20 md:py-28 content-section">
           <div class="max-w-4xl mx-auto px-6 lg:px-8">
             <div class="section-heading-container mb-12">
                 <div class="heading-decorator"></div>
                 <h2 class="section-header text-4xl md:text-5xl font-bold text-primary">Education</h2>
             </div>
             <div class="relative pt-4">
-              <div class="timeline-path"><div class="timeline-path-progress nakula-style"></div></div>
-              <div class="timeline-item pl-12 mb-12 relative"><div class="timeline-dot nakula-style absolute"></div><p class="text-sm text-tertiary mb-1">2022 - 2026</p><h3 class="text-xl md:text-2xl font-bold text-primary">Bachelor of Engineering in Computer Engineering</h3><p class="text-lg font-medium text-accent">Guru Gobind Singh College Of Engineering And Research Centre, Nashik</p><p class="mt-2 text-secondary">Current SGPA: 9.48. Deeply involved in AI/ML,Data Analytics ,Data Science, and full-stack development subjects and projects.</p></div>
-              <div class="timeline-item pl-12 relative pt-4"><div class="timeline-dot nakula-style absolute"></div><p class="text-sm text-tertiary mb-1">2021 - 2022</p><h3 class="text-xl md:text-2xl font-bold text-primary">HSC (Class 12)</h3><p class="text-lg font-medium text-accent">Universal College of Commerce and Science</p><p class="mt-2 text-secondary">Completed higher secondary education with a focus on Physics, Chemistry, and Mathematics, scoring 72.33%.</p></div>
+              <div class="timeline-path"><div class="timeline-path-progress"></div></div>
+              <div class="timeline-item pl-12 mb-12 relative"><div class="timeline-dot absolute"></div><p class="text-sm text-tertiary mb-1">2022 - 2026</p><h3 class="text-xl md:text-2xl font-bold text-primary">Bachelor of Engineering in Computer Engineering</h3><p class="text-lg font-medium text-accent">Guru Gobind Singh College Of Engineering And Research Centre, Nashik</p><p class="mt-2 text-secondary">Current SGPA: 9.48. Deeply involved in AI/ML,Data Analytics ,Data Science, and full-stack development subjects and projects.</p></div>
+              <div class="timeline-item pl-12 relative pt-4"><div class="timeline-dot absolute"></div><p class="text-sm text-tertiary mb-1">2021 - 2022</p><h3 class="text-xl md:text-2xl font-bold text-primary">HSC (Class 12)</h3><p class="text-lg font-medium text-accent">Universal College of Commerce and Science</p><p class="mt-2 text-secondary">Completed higher secondary education with a focus on Physics, Chemistry, and Mathematics, scoring 72.33%.</p></div>
             </div>
           </div>
         </section>
 
-        <section id="experience" class="py-20 md:py-28 content-section nakula-bg">
+        <section id="experience" class="py-20 md:py-28 content-section">
           <div class="max-w-4xl mx-auto px-6 lg:px-8">
             <div class="section-heading-container mb-12">
                 <div class="heading-decorator"></div>
                 <h2 class="section-header text-4xl md:text-5xl font-bold text-primary">Work Experience</h2>
             </div>
             <div class="relative pt-4">
-              <div class="timeline-path"><div class="timeline-path-progress nakula-style"></div></div>
+              <div class="timeline-path"><div class="timeline-path-progress"></div></div>
               <div class="timeline-item pl-12 mb-12 relative">
-                  <div class="timeline-dot nakula-style absolute"></div>
+                  <div class="timeline-dot absolute"></div>
                   <p class="text-sm text-tertiary mb-1">Feb 2025 – Present</p>
                   <h3 class="text-xl md:text-2xl font-bold text-primary">Data Analyst</h3>
                   <p class="text-lg font-medium text-accent">Falcon Design Solutions, Nashik</p>
                   <p class="mt-2 text-secondary">Collaborate with a U.S.based steel detailing firm to automate ETL workflows and streamline data pipelines for shop drawing projects. Built Power BI dashboards to visualize project progress and resource utilization. Wrote SQL queries to manage drawing metadata and submittals. Supported cross functional teams with actionable insights.</p>
               </div>
               <div class="timeline-item pl-12 relative pt-4">
-                  <div class="timeline-dot nakula-style absolute"></div>
+                  <div class="timeline-dot absolute"></div>
                   <p class="text-sm text-tertiary mb-1">Dec 2024 – Feb 2025</p>
                   <h3 class="text-xl md:text-2xl font-bold text-primary">Data Science Intern</h3>
                   <p class="text-lg font-medium text-accent">NetLeap IT Training, Nashik</p>
@@ -657,49 +426,49 @@
           </div>
         </section>
 
-        <section id="skills" class="py-20 md:py-28 content-section nakula-bg">
+        <section id="skills" class="py-20 md:py-28 content-section">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
                 <div class="section-heading-container mb-12">
                     <div class="heading-decorator"></div>
                     <h2 class="section-header text-4xl md:text-5xl font-bold text-primary">Skills & Technologies</h2>
                 </div>
                 <div class="space-y-10">
-                    <div class="skill-category nakula-style">
+                    <div class="skill-category">
                         <h3>Languages</h3>
                         <div class="skills-grid">
-                            <div class="skill-card nakula-style"><img src="https://www.svgrepo.com/show/452091/python.svg" alt="Python"><span>Python</span></div>
-                            <div class="skill-card nakula-style"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/C_Programming_Language.svg/1200px-C_Programming_Language.svg.png" alt="C"><span>C</span></div>
-                            <div class="skill-card nakula-style"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png" alt="C++"><span>C++</span></div>
-                            <div class="skill-card nakula-style"><img src="https://www.svgrepo.com/show/374093/sql.svg" alt="SQL"><span>SQL</span></div>
-                            <div class="skill-card nakula-style"><img src="https://www.svgrepo.com/show/349419/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
-                            <div class="skill-card nakula-style"><img src="https://www.svgrepo.com/show/452228/html-5.svg" alt="HTML"><span>HTML</span></div>
-                            <div class="skill-card nakula-style"><img src="https://www.svgrepo.com/show/452185/css-3.svg" alt="CSS"><span>CSS</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/452091/python.svg" alt="Python"><span>Python</span></div>
+                            <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/C_Programming_Language.svg/1200px-C_Programming_Language.svg.png" alt="C"><span>C</span></div>
+                            <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png" alt="C++"><span>C++</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/374093/sql.svg" alt="SQL"><span>SQL</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/349419/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/452228/html-5.svg" alt="HTML"><span>HTML</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/452185/css-3.svg" alt="CSS"><span>CSS</span></div>
                         </div>
                     </div>
-                    <div class="skill-category nakula-style">
+                    <div class="skill-category">
                         <h3>Frameworks & Libraries</h3>
                          <div class="skills-grid">
-                            <div class="skill-card nakula-style"><img src="https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/logos/flask-qvsfwhwywucb6zv0d7ce.png/flask-1byb2jlw6nwim4nx2248xg.png?_a=DATAg1AAZAA0" alt="Flask"><span>Flask</span></div>
-                            <div class="skill-card nakula-style"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg" alt="TensorFlow"><span>TensorFlow</span></div>
-                            <div class="skill-card nakula-style"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Scikit_learn_logo_small.svg/2560px-Scikit_learn_logo_small.svg.png" alt="Scikit-learn"><span>Scikit-learn</span></div>
-                            <div class="skill-card nakula-style"><img src="https://cdn.worldvectorlogo.com/logos/pandas.svg" alt="Pandas"><span>Pandas</span></div>
-                            <div class="skill-card nakula-style"><img src="https://www.svgrepo.com/show/373938/numpy.svg" alt="NumPy"><span>NumPy</span></div>
-                            <div class="skill-card nakula-style"><img src="https://img.icons8.com/?size=512&id=TkX1totjFmAD&format=png" alt="Matplotlib"><span>Matplotlib</span></div>
-                            <div class="skill-card nakula-style"><img src="https://cdn.worldvectorlogo.com/logos/seaborn-1.svg" alt="Seaborn"><span>Seaborn</span></div>
+                            <div class="skill-card"><img src="https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/logos/flask-qvsfwhwywucb6zv0d7ce.png/flask-1byb2jlw6nwim4nx2248xg.png?_a=DATAg1AAZAA0" alt="Flask"><span>Flask</span></div>
+                            <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg" alt="TensorFlow"><span>TensorFlow</span></div>
+                            <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Scikit_learn_logo_small.svg/2560px-Scikit_learn_logo_small.svg.png" alt="Scikit-learn"><span>Scikit-learn</span></div>
+                            <div class="skill-card"><img src="https://cdn.worldvectorlogo.com/logos/pandas.svg" alt="Pandas"><span>Pandas</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/373938/numpy.svg" alt="NumPy"><span>NumPy</span></div>
+                            <div class="skill-card"><img src="https://img.icons8.com/?size=512&id=TkX1totjFmAD&format=png" alt="Matplotlib"><span>Matplotlib</span></div>
+                            <div class="skill-card"><img src="https://cdn.worldvectorlogo.com/logos/seaborn-1.svg" alt="Seaborn"><span>Seaborn</span></div>
                         </div>
                     </div>
-                    <div class="skill-category nakula-style">
+                    <div class="skill-category">
                         <h3>Tools</h3>
                         <div class="skills-grid">
-                            <div class="skill-card nakula-style"><img src="https://www.svgrepo.com/show/452210/git.svg" alt="Git"><span>Git</span></div>
-                            <div class="skill-card nakula-style"><img src="https://www.svgrepo.com/show/373848/mysql.svg" alt="MySQL"><span>MySQL</span></div>
-                            <div class="skill-card nakula-style"><img src="https://www.svgrepo.com/show/374171/vscode.svg" alt="VS Code"><span>VS Code</span></div>
-                            <div class="skill-card nakula-style"><img src="cognos-analytics-svgrepo-com.svg" alt="IBM Cognos Analytics"><span>IBM Cognos</span></div>
-                            <div class="skill-card nakula-style"><img src="https://www.svgrepo.com/show/354012/looker-icon.svg" alt="Looker"><span>Looker Studio</span></div>
-                            <div class="skill-card nakula-style"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/1767px-Jupyter_logo.svg.png" alt="Jupyter"><span>Jupyter</span></div>
-                            <div class="skill-card nakula-style"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/1200px-New_Power_BI_Logo.svg.png" alt="Power BI"><span>Power BI</span></div>
-                            <div class="skill-card nakula-style"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png" alt="PostgreSQL"><span>PostgreSQL</span></div>
-                            <div class="skill-card nakula-style"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/826px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png" alt="Excel"><span>Excel</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/452210/git.svg" alt="Git"><span>Git</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/373848/mysql.svg" alt="MySQL"><span>MySQL</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/374171/vscode.svg" alt="VS Code"><span>VS Code</span></div>
+                            <div class="skill-card"><img src="cognos-analytics-svgrepo-com.svg" alt="IBM Cognos Analytics"><span>IBM Cognos</span></div>
+                            <div class="skill-card"><img src="https://www.svgrepo.com/show/354012/looker-icon.svg" alt="Looker"><span>Looker Studio</span></div>
+                            <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/1767px-Jupyter_logo.svg.png" alt="Jupyter"><span>Jupyter</span></div>
+                            <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/1200px-New_Power_BI_Logo.svg.png" alt="Power BI"><span>Power BI</span></div>
+                            <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png" alt="PostgreSQL"><span>PostgreSQL</span></div>
+                            <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/826px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png" alt="Excel"><span>Excel</span></div>
                         </div>
                     </div>
                 </div>
@@ -720,16 +489,24 @@
   </div>
 
   <div id="certifications-container">
-      <button class="cert-nav-btn prev nav-btn-nakula" id="cert-prev-btn" aria-label="Previous Certification"><i class="fas fa-chevron-left"></i></button>
-      <button class="cert-nav-btn next nav-btn-nakula" id="cert-next-btn" aria-label="Next Certification"><i class="fas fa-chevron-right"></i></button>
+      <button class="cert-nav-btn prev" id="cert-prev-btn" aria-label="Previous Certification"><i class="fas fa-chevron-left"></i></button>
+      <button class="cert-nav-btn next" id="cert-next-btn" aria-label="Next Certification"><i class="fas fa-chevron-right"></i></button>
 
       <div class="certifications-grid">
-          <a href="https://www.credly.com/badges/your-ibm-data-analyst-badge-link" class="certification-card card-nakula-style" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.credly.com/badges/your-ibm-data-analyst-badge-link" class="certification-card" target="_blank" rel="noopener noreferrer">
               <img src="certifications.png" alt="IBM Data Analyst Professional Certificate">
               <div class="p-5">
                   <h3 class="text-primary text-lg font-bold">IBM Data Analyst Professional Certificate</h3>
                   <p class="text-secondary mt-1 text-sm">Completed comprehensive training in data analysis tools and techniques.</p>
               </div>
+          </a>
+          <!-- Add more certification cards here if needed -->
+          <a href="https://www.credly.com/badges/your-second-badge-link" class="certification-card" target="_blank" rel="noopener noreferrer">
+            <img src="https://via.placeholder.com/350x200/60a5fa/ffffff?text=Another+Cert" alt="Another Certification">
+            <div class="p-5">
+                <h3 class="text-primary text-lg font-bold">Another Certification Title</h3>
+                <p class="text-secondary mt-1 text-sm">Description of another key certification achieved.</p>
+            </div>
           </a>
       </div>
   </div>
@@ -747,53 +524,53 @@
   </div>
 
   <div id="projects-container">
-      <button class="project-nav-btn prev nav-btn-nakula" id="prev-btn" aria-label="Previous Project"><i class="fas fa-chevron-left"></i></button>
-      <button class="project-nav-btn next nav-btn-nakula" id="next-btn" aria-label="Next Project"><i class="fas fa-chevron-right"></i></button>
+      <button class="project-nav-btn prev" id="prev-btn" aria-label="Previous Project"><i class="fas fa-chevron-left"></i></button>
+      <button class="project-nav-btn next" id="next-btn" aria-label="Next Project"><i class="fas fa-chevron-right"></i></button>
 
       <div class="projects-grid">
-          <a href="https://github.com/Hamizkhan08/Nutrifusion-Personalized-Fitness-and-Nutrition-Recommendation-System" class="project-card card-nakula-style" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/Hamizkhan08/Nutrifusion-Personalized-Fitness-and-Nutrition-Recommendation-System" class="project-card" target="_blank" rel="noopener noreferrer">
               <img src="final.png" alt="Fitness & Nutrition Recommender">
               <div class="p-5">
                   <h3 class="text-primary text-lg font-bold">Fitness & Nutrition Recommender</h3>
                   <p class="text-secondary mt-1 text-sm">Web app generating personalized diet and workout plans via Random Forest.</p>
               </div>
           </a>
-          <a href="https://github.com/Hamizkhan08/Mindmap" class="project-card card-nakula-style" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/Hamizkhan08/Mindmap" class="project-card" target="_blank" rel="noopener noreferrer">
               <img src="mapp.png" alt="YouTube to 3D Mind Map Generator">
               <div class="p-5">
                   <h3 class="text-primary text-lg font-bold">YouTube to 3D Mind Map</h3>
                   <p class="text-secondary mt-1 text-sm">AI-powered tool to visualize video transcripts as interactive 3D mind maps.</p>
               </div>
           </a>
-          <a href="https://github.com/Hamizkhan08/Customer-Segmentation-Marketing-Analysis" class="project-card card-nakula-style" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/Hamizkhan08/Customer-Segmentation-Marketing-Analysis" class="project-card" target="_blank" rel="noopener noreferrer">
               <img src="image2.png" alt="Customer Segmentation">
               <div class="p-5">
                   <h3 class="text-primary text-lg font-bold">Customer Segmentation Analysis</h3>
                   <p class="text-secondary mt-1 text-sm">Performs customer segmentation using unsupervised machine learning.</p>
               </div>
           </a>
-          <a href="https://github.com/Hamizkhan08/FacePluse-Missing-Person-Matcher-for-Disaster-Response" class="project-card card-nakula-style" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/Hamizkhan08/FacePluse-Missing-Person-Matcher-for-Disaster-Response" class="project-card" target="_blank" rel="noopener noreferrer">
               <img src="miss.png" alt="Missing Person Matcher">
               <div class="p-5">
                   <h3 class="text-primary text-lg font-bold">Missing Person Matcher</h3>
                   <p class="text-secondary mt-1 text-sm">Facial recognition tool for identifying missing persons in disaster response.</p>
               </div>
           </a>
-          <a href="https://github.com/Hamizkhan08/Job-Resume-Classifier" class="project-card card-nakula-style" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/Hamizkhan08/Job-Resume-Classifier" class="project-card" target="_blank" rel="noopener noreferrer">
               <img src="job.png" alt="Job Resume Classifier">
               <div class="p-5">
                   <h3 class="text-primary text-lg font-bold">Job Resume Classifier</h3>
                   <p class="text-secondary mt-1 text-sm">ML app to classify resumes into job roles using NLP.</p>
               </div>
           </a>
-          <a href="https://github.com/Hamizkhan08/atm-prediction" class="project-card card-nakula-style" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/Hamizkhan08/atm-prediction" class="project-card" target="_blank" rel="noopener noreferrer">
               <img src="Screenshot 2025-06-20 121225.png" alt="ATM Cash Predictor">
               <div class="p-5">
                   <h3 class="text-primary text-lg font-bold">ATM Cash Predictor</h3>
                   <p class="text-secondary mt-1 text-sm">Predicts cash shortages using historical data for proactive bank alerts.</p>
               </div>
           </a>
-          <a href="https://github.com/Hamizkhan08" class="project-card card-nakula-style" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/Hamizkhan08" class="project-card" target="_blank" rel="noopener noreferrer">
               <img src="image.png" alt="More Projects">
               <div class="p-5">
                   <h3 class="text-primary text-lg font-bold">And Many More...</h3>
@@ -804,7 +581,7 @@
   </div>
 </div>
 
-<footer class="py-20 z-10 relative nakula-style">
+<footer class="py-20 z-10 relative">
   <div class="max-w-7xl mx-auto text-center px-4 sm:px-6 lg:px-8">
     <h2 class="text-4xl md:text-5xl font-bold">Let's Build Together</h2>
     <p class="text-lg text-slate-300 mt-4 max-w-2xl mx-auto">Have a project in mind or an opportunity to discuss? I'd love to hear from you.</p>
@@ -841,14 +618,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function initPage() {
         initTheme();
         initNavbar();
-        // The 3D object is replaced by an image in the new design
-        // if (window.innerWidth > 768) {
-        //     initHero3D();
-        // }
+        if (window.innerWidth > 768) {
+            initHero3D();
+        }
         initCustomCursor();
         initScrollAnimations();
         initTextAnimations();
-        initCertificationNavigation();
+        initCertificationNavigation(); // Initialize new certification navigation
         initProjectNavigation();
     }
 
@@ -870,8 +646,6 @@ document.addEventListener('DOMContentLoaded', function() {
         handleScroll();
     }
 
-    // initHero3D function commented out as per design change
-    /*
     function initHero3D() {
         const container = document.getElementById('hero-3d-container');
         if (!container) return;
@@ -910,7 +684,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         animate();
     }
-    */
 
     function initCustomCursor() {
         const cursorDot = document.getElementById('cursor-dot');
@@ -1013,12 +786,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function initTextAnimations() {
-        // Updated hero text animation for the new heading structure
-        gsap.fromTo('.hero-heading span', { y: '100%', opacity: 0 }, { y: '0%', opacity: 1, stagger: 0.1, duration: 1.2, ease: 'power3.out', delay: 0.5 });
-        gsap.fromTo('.subtitle-text', { y: '50%', opacity: 0 }, { y: '0%', opacity: 1, duration: 1, ease: 'power3.out', delay: 1 });
-        gsap.fromTo('.nakula-button', { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(1.7)', delay: 1.5 });
-
-
+        gsap.fromTo('.hero-element h1 span', { y: '100%', opacity: 0 }, { y: '0%', opacity: 1, stagger: 0.1, duration: 1.2, ease: 'power3.out', delay: 0.5 });
+        gsap.fromTo('.hero-element p', { y: '50%', opacity: 0 }, { y: '0%', opacity: 1, duration: 1, ease: 'power3.out', delay: 1 });
         document.querySelectorAll('.section-heading-container').forEach((elem) => {
             const header = elem.querySelector('.section-header');
             const decorator = elem.querySelector('.heading-decorator');
